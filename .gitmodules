@@ -1,0 +1,8 @@
+[submodule "knox"]
+	path = knox
+	url = https://github.com/trieut415/knox-RuleScape.git
+	branch = dev
+[submodule "cello"]
+	path = cello
+	url = https://github.com/trieut415/Cello-v2-1-Core-RuleScape.git
+	branch = dev
