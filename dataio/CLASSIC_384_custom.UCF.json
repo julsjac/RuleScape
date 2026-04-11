@@ -1,0 +1,302 @@
+[
+  {
+    "collection": "header",
+    "description": "Custom empirical UCF derived from CLASSIC 384-expression data",
+    "version": "CLASSIC_384_custom_v1",
+    "author": [
+      "Juliette Jacques"
+    ],
+    "organism": "Custom / derived from CLASSIC dataset"
+  },
+  {
+    "collection": "logic_constraints",
+    "available_gates": [
+      {
+        "type": "EMPIRICAL_SWITCH",
+        "max_instances": true
+      }
+    ]
+  },
+  {
+    "collection": "parts",
+    "name": "Prom_1",
+    "part_type": "promoter",
+    "source_column": "Prom"
+  },
+  {
+    "collection": "parts",
+    "name": "Prom_2",
+    "part_type": "promoter",
+    "source_column": "Prom"
+  },
+  {
+    "collection": "parts",
+    "name": "Prom_3",
+    "part_type": "promoter",
+    "source_column": "Prom"
+  },
+  {
+    "collection": "parts",
+    "name": "Prom_4",
+    "part_type": "promoter",
+    "source_column": "Prom"
+  },
+  {
+    "collection": "parts",
+    "name": "Prom_5",
+    "part_type": "promoter",
+    "source_column": "Prom"
+  },
+  {
+    "collection": "parts",
+    "name": "Prom_6",
+    "part_type": "promoter",
+    "source_column": "Prom"
+  },
+  {
+    "collection": "parts",
+    "name": "Prom_7",
+    "part_type": "promoter",
+    "source_column": "Prom"
+  },
+  {
+    "collection": "parts",
+    "name": "Prom_8",
+    "part_type": "promoter",
+    "source_column": "Prom"
+  },
+  {
+    "collection": "parts",
+    "name": "Kozak_1",
+    "part_type": "kozak",
+    "source_column": "Kozak"
+  },
+  {
+    "collection": "parts",
+    "name": "Kozak_2",
+    "part_type": "kozak",
+    "source_column": "Kozak"
+  },
+  {
+    "collection": "parts",
+    "name": "Kozak_3",
+    "part_type": "kozak",
+    "source_column": "Kozak"
+  },
+  {
+    "collection": "parts",
+    "name": "Kozak_4",
+    "part_type": "kozak",
+    "source_column": "Kozak"
+  },
+  {
+    "collection": "parts",
+    "name": "Kozak_5",
+    "part_type": "kozak",
+    "source_column": "Kozak"
+  },
+  {
+    "collection": "parts",
+    "name": "Kozak_6",
+    "part_type": "kozak",
+    "source_column": "Kozak"
+  },
+  {
+    "collection": "parts",
+    "name": "Term_1",
+    "part_type": "terminator",
+    "source_column": "Term"
+  },
+  {
+    "collection": "parts",
+    "name": "Term_2",
+    "part_type": "terminator",
+    "source_column": "Term"
+  },
+  {
+    "collection": "parts",
+    "name": "Term_3",
+    "part_type": "terminator",
+    "source_column": "Term"
+  },
+  {
+    "collection": "parts",
+    "name": "Term_4",
+    "part_type": "terminator",
+    "source_column": "Term"
+  },
+  {
+    "collection": "parts",
+    "name": "Term_5",
+    "part_type": "terminator",
+    "source_column": "Term"
+  },
+  {
+    "collection": "parts",
+    "name": "Term_6",
+    "part_type": "terminator",
+    "source_column": "Term"
+  },
+  {
+    "collection": "parts",
+    "name": "Term_7",
+    "part_type": "terminator",
+    "source_column": "Term"
+  },
+  {
+    "collection": "parts",
+    "name": "Term_8",
+    "part_type": "terminator",
+    "source_column": "Term"
+  },
+  {
+    "collection": "structures",
+    "name": "simple_expression_unit_structure",
+    "inputs": [],
+    "outputs": [
+      "expression_output"
+    ],
+    "devices": [
+      {
+        "name": "expression_unit",
+        "components": [
+          "PROMOTER_SLOT",
+          "KOZAK_SLOT",
+          "REPORTER_GENE",
+          "TERMINATOR_SLOT"
+        ]
+      }
+    ]
+  },
+  {
+    "collection": "models",
+    "name": "promoter_effect_model",
+    "model_type": "empirical_mean_expression",
+    "parameters": [
+      {
+        "name": "Prom_1",
+        "value": 3.341548226395833
+      },
+      {
+        "name": "Prom_2",
+        "value": 3.8536837356249998
+      },
+      {
+        "name": "Prom_3",
+        "value": 2.9165277313125
+      },
+      {
+        "name": "Prom_4",
+        "value": 2.987707633479167
+      },
+      {
+        "name": "Prom_5",
+        "value": 3.5044191168958334
+      },
+      {
+        "name": "Prom_6",
+        "value": 2.9270496757083335
+      },
+      {
+        "name": "Prom_7",
+        "value": 2.9781761609583337
+      },
+      {
+        "name": "Prom_8",
+        "value": 3.01154573725
+      }
+    ]
+  },
+  {
+    "collection": "models",
+    "name": "kozak_effect_model",
+    "model_type": "empirical_mean_expression",
+    "parameters": [
+      {
+        "name": "Kozak_1",
+        "value": 3.167779280125
+      },
+      {
+        "name": "Kozak_2",
+        "value": 3.076084596421875
+      },
+      {
+        "name": "Kozak_3",
+        "value": 3.311291011859375
+      },
+      {
+        "name": "Kozak_4",
+        "value": 3.313736697359375
+      },
+      {
+        "name": "Kozak_5",
+        "value": 2.975821107890625
+      },
+      {
+        "name": "Kozak_6",
+        "value": 3.2957808195625
+      }
+    ]
+  },
+  {
+    "collection": "models",
+    "name": "terminator_effect_model",
+    "model_type": "empirical_mean_expression",
+    "parameters": [
+      {
+        "name": "Term_1",
+        "value": 3.2034113918958336
+      },
+      {
+        "name": "Term_2",
+        "value": 3.152119389375
+      },
+      {
+        "name": "Term_3",
+        "value": 3.0496888300208336
+      },
+      {
+        "name": "Term_4",
+        "value": 3.2280468507499998
+      },
+      {
+        "name": "Term_5",
+        "value": 3.2547126536666666
+      },
+      {
+        "name": "Term_6",
+        "value": 3.258698153416667
+      },
+      {
+        "name": "Term_7",
+        "value": 3.196251693875
+      },
+      {
+        "name": "Term_8",
+        "value": 3.1777290546250003
+      }
+    ]
+  },
+  {
+    "collection": "models",
+    "name": "global_expression_model",
+    "model_type": "empirical_mean_expression",
+    "parameters": [
+      {
+        "name": "global_mean_expression",
+        "value": 3.190082252203125
+      }
+    ]
+  },
+  {
+    "collection": "gates",
+    "name": "CLASSIC_384_expression_gate",
+    "system": "custom",
+    "group": "CLASSIC_384",
+    "regulator": "empirical_expression",
+    "gate_type": "EMPIRICAL_SWITCH",
+    "color": "4A90E2",
+    "model": "global_expression_model",
+    "structure": "simple_expression_unit_structure"
+  }
+]

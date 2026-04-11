@@ -1,0 +1,1820 @@
+[
+  {
+    "collection": "header",
+    "description": "Custom empirical single-input UCF derived from CLASSIC single-input measurements",
+    "version": "CLASSIC_single_input_v2_top25",
+    "author": [
+      "Juliette Jacques"
+    ],
+    "organism": "Custom / derived from CLASSIC single-input library"
+  },
+  {
+    "collection": "measurement_std",
+    "signal_carrier_units": "AU"
+  },
+  {
+    "collection": "logic_constraints",
+    "available_gates": [
+      {
+        "type": "NOT",
+        "max_instances": true
+      }
+    ]
+  },
+  {
+    "collection": "functions",
+    "name": "Hill_response",
+    "equation": "ymin + (ymax - ymin) / (1.0 + (x / K)^n)"
+  },
+  {
+    "collection": "functions",
+    "name": "linear_input_composition",
+    "equation": "x"
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_1_1",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_1_2",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_1_3",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_1_4",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_2_1",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_2_2",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_2_3",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_2_4",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_3_2",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_3_3",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_3_4",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_3_5",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_4_1",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_4_2",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_4_3",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_5_1",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_5_2",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_5_3",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_5_4",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_5_5",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_5_6",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_5_7",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_5_8",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_5_9",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_5_11",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_5_12",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_6_1",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_6_2",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_6_3",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_6_4",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_7_1",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_7_2",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_7_3",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_8_1",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_8_2",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_8_3",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_9_1",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "design_col_9_2",
+    "type": "design_factor",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "TA_SLOT",
+    "type": "cds",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "IDP_SLOT",
+    "type": "cds",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "ZF_SLOT",
+    "type": "cds",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "SYN_TERMINATOR_SLOT",
+    "type": "terminator",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "BM_SLOT",
+    "type": "promoter",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "CORE_PROMOTER_SLOT",
+    "type": "promoter",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "REPORTER_GENE",
+    "type": "cds",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "REPORTER_TERMINATOR",
+    "type": "terminator",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "SPACER1_SLOT",
+    "type": "scar",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "SPACER2_SLOT",
+    "type": "scar",
+    "dnasequence": ""
+  },
+  {
+    "collection": "parts",
+    "name": "ORIENTATION_SLOT",
+    "type": "scar",
+    "dnasequence": ""
+  },
+  {
+    "collection": "structures",
+    "name": "single_input_switch_structure",
+    "inputs": [
+      {
+        "name": "in1",
+        "part_type": "promoter"
+      }
+    ],
+    "outputs": [
+      "reporter_output"
+    ],
+    "devices": [
+      {
+        "name": "synTF_unit",
+        "components": [
+          "#in1",
+          "TA_SLOT",
+          "IDP_SLOT",
+          "ZF_SLOT",
+          "SYN_TERMINATOR_SLOT"
+        ]
+      },
+      {
+        "name": "reporter_unit",
+        "components": [
+          "BM_SLOT",
+          "CORE_PROMOTER_SLOT",
+          "REPORTER_GENE",
+          "REPORTER_TERMINATOR"
+        ]
+      },
+      {
+        "name": "layout_context",
+        "components": [
+          "SPACER1_SLOT",
+          "SPACER2_SLOT",
+          "ORIENTATION_SLOT"
+        ]
+      }
+    ]
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_001",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_001",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_001_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_001_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 202251.40234672395,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 623.3614828021055,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 101437.38191476303,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 2,
+      "design_col_2": 3,
+      "design_col_3": 4,
+      "design_col_4": 2,
+      "design_col_5": 12,
+      "design_col_6": 2,
+      "design_col_7": 1,
+      "design_col_8": 2,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 623.3614828021055,
+      "induced_expr": 202251.40234672395,
+      "fold_change": 324.4528382433462,
+      "switch_score": 201952.49370216517
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_002",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_002",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_002_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_002_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 200582.59236737393,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 599.1101897637867,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 100590.85127856885,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 3,
+      "design_col_2": 1,
+      "design_col_3": 3,
+      "design_col_4": 2,
+      "design_col_5": 2,
+      "design_col_6": 2,
+      "design_col_7": 1,
+      "design_col_8": 1,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 599.1101897637867,
+      "induced_expr": 200582.59236737393,
+      "fold_change": 334.80083596384554,
+      "switch_score": 200318.28301357396
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_003",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_003",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_003_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_003_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.9640111862,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 113.50108156723155,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 98905.23254637672,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 3,
+      "design_col_2": 3,
+      "design_col_3": 3,
+      "design_col_4": 3,
+      "design_col_5": 9,
+      "design_col_6": 2,
+      "design_col_7": 1,
+      "design_col_8": 1,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 113.50108156723155,
+      "induced_expr": 197696.9640111862,
+      "fold_change": 1741.8068733916145,
+      "switch_score": 199325.2698030106
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_004",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_004",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_004_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_004_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.9640111862,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 151.52742468929392,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 98924.24571793775,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 4,
+      "design_col_2": 3,
+      "design_col_3": 5,
+      "design_col_4": 1,
+      "design_col_5": 12,
+      "design_col_6": 1,
+      "design_col_7": 1,
+      "design_col_8": 1,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 151.52742468929392,
+      "induced_expr": 197696.9640111862,
+      "fold_change": 1304.6942783892925,
+      "switch_score": 198850.13086488622
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_005",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_005",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_005_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_005_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.9640111862,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 182.09774136038232,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 98939.5308762733,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 4,
+      "design_col_2": 2,
+      "design_col_3": 5,
+      "design_col_4": 3,
+      "design_col_5": 6,
+      "design_col_6": 2,
+      "design_col_7": 3,
+      "design_col_8": 3,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 182.09774136038232,
+      "induced_expr": 197696.9640111862,
+      "fold_change": 1085.6640095273456,
+      "switch_score": 198600.53027935317
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_006",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_006",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_006_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_006_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.9640111862,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 228.90590247072893,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 98962.93495682847,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 3,
+      "design_col_2": 2,
+      "design_col_3": 2,
+      "design_col_4": 1,
+      "design_col_5": 1,
+      "design_col_6": 4,
+      "design_col_7": 2,
+      "design_col_8": 3,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 228.90590247072893,
+      "induced_expr": 197696.9640111862,
+      "fold_change": 863.6604031495714,
+      "switch_score": 198331.71851186507
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_007",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_007",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_007_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_007_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.9640111862,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 243.43150493167752,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 98970.19775805894,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 4,
+      "design_col_2": 2,
+      "design_col_3": 4,
+      "design_col_4": 1,
+      "design_col_5": 2,
+      "design_col_6": 1,
+      "design_col_7": 2,
+      "design_col_8": 1,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 243.43150493167752,
+      "induced_expr": 197696.9640111862,
+      "fold_change": 812.1256287951416,
+      "switch_score": 198265.65813504969
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_008",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_008",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_008_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_008_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.9640111862,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 250.95588955922565,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 98973.95995037271,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 4,
+      "design_col_2": 3,
+      "design_col_3": 2,
+      "design_col_4": 3,
+      "design_col_5": 11,
+      "design_col_6": 1,
+      "design_col_7": 2,
+      "design_col_8": 3,
+      "design_col_9": 2
+    },
+    "empirical_values": {
+      "basal_expr": 250.95588955922565,
+      "induced_expr": 197696.9640111862,
+      "fold_change": 787.7757495885734,
+      "switch_score": 198233.78387121554
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_009",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_009",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_009_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_009_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 200219.7792254461,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 2100.214992501387,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 101159.99710897374,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 1,
+      "design_col_2": 4,
+      "design_col_3": 3,
+      "design_col_4": 2,
+      "design_col_5": 2,
+      "design_col_6": 3,
+      "design_col_7": 1,
+      "design_col_8": 3,
+      "design_col_9": 2
+    },
+    "empirical_values": {
+      "basal_expr": 2100.214992501387,
+      "induced_expr": 200219.7792254461,
+      "fold_change": 95.33299207000775,
+      "switch_score": 198214.89722501472
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_010",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_010",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_010_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_010_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.9640111862,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 264.54402341440147,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 98980.7540173003,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 3,
+      "design_col_2": 4,
+      "design_col_3": 2,
+      "design_col_4": 1,
+      "design_col_5": 6,
+      "design_col_6": 4,
+      "design_col_7": 3,
+      "design_col_8": 2,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 264.54402341440147,
+      "induced_expr": 197696.9640111862,
+      "fold_change": 747.3121541721582,
+      "switch_score": 198179.73214194397
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_011",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_011",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_011_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_011_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.9640111862,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 269.84729919593957,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 98983.40565519108,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 2,
+      "design_col_2": 2,
+      "design_col_3": 3,
+      "design_col_4": 3,
+      "design_col_5": 3,
+      "design_col_6": 1,
+      "design_col_7": 2,
+      "design_col_8": 3,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 269.84729919593957,
+      "induced_expr": 197696.9640111862,
+      "fold_change": 732.6253203210158,
+      "switch_score": 198159.74203231127
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_012",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_012",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_012_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_012_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 42978.02281210407,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 3428.666353840591,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 23203.34458297233,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 2.5,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 1,
+      "design_col_2": 3,
+      "design_col_3": 4,
+      "design_col_4": 2,
+      "design_col_5": 8,
+      "design_col_6": 3,
+      "design_col_7": 3,
+      "design_col_8": 1,
+      "design_col_9": 2
+    },
+    "empirical_values": {
+      "basal_expr": 3428.666353840591,
+      "induced_expr": 42978.02281210407,
+      "fold_change": 12.534909605293793,
+      "switch_score": 39561.891367868775
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_013",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_013",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_013_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_013_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 13663.226158139518,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 462.7355190297843,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 7062.980838584651,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 2.5,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 4,
+      "design_col_2": 4,
+      "design_col_3": 3,
+      "design_col_4": 1,
+      "design_col_5": 7,
+      "design_col_6": 1,
+      "design_col_7": 3,
+      "design_col_8": 3,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 462.7355190297843,
+      "induced_expr": 13663.226158139518,
+      "fold_change": 29.527074530148774,
+      "switch_score": 13230.017713639883
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_014",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_014",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_014_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_014_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 7050.239296101942,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 971.8321698002493,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 4011.0357329510957,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 2.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 3,
+      "design_col_2": 1,
+      "design_col_3": 3,
+      "design_col_4": 2,
+      "design_col_5": 8,
+      "design_col_6": 2,
+      "design_col_7": 2,
+      "design_col_8": 3,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 971.8321698002493,
+      "induced_expr": 7050.239296101942,
+      "fold_change": 7.254585220770219,
+      "switch_score": 6085.6617115224635
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_015",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_015",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_015_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_015_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 3251.305761416655,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 390.6203055704194,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 1820.9630334935373,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 2.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 1,
+      "design_col_2": 1,
+      "design_col_3": 4,
+      "design_col_4": 2,
+      "design_col_5": 9,
+      "design_col_6": 3,
+      "design_col_7": 3,
+      "design_col_8": 2,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 390.6203055704194,
+      "induced_expr": 3251.305761416655,
+      "fold_change": 8.323442778195572,
+      "switch_score": 2869.008898624431
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_016",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_016",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_016_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_016_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 2120.156034710551,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 573.5921674076038,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 1346.8741010590775,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 1.5,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 3,
+      "design_col_2": 4,
+      "design_col_3": 4,
+      "design_col_4": 1,
+      "design_col_5": 3,
+      "design_col_6": 1,
+      "design_col_7": 1,
+      "design_col_8": 1,
+      "design_col_9": 2
+    },
+    "empirical_values": {
+      "basal_expr": 573.5921674076038,
+      "induced_expr": 2120.156034710551,
+      "fold_change": 3.6962778698544083,
+      "switch_score": 1550.2601451728015
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_017",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_017",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_017_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_017_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 1040.0499444443385,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 517.8876157065279,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 778.9687800754332,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 1.5,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 2,
+      "design_col_2": 1,
+      "design_col_3": 2,
+      "design_col_4": 2,
+      "design_col_5": 3,
+      "design_col_6": 1,
+      "design_col_7": 3,
+      "design_col_8": 3,
+      "design_col_9": 2
+    },
+    "empirical_values": {
+      "basal_expr": 517.8876157065279,
+      "induced_expr": 1040.0499444443385,
+      "fold_change": 2.0082541325601135,
+      "switch_score": 524.1705828703707
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_018",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_018",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_018_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_018_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 320.1334731472391,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 300.9365639229735,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 310.5350185351063,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 1.2,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 2,
+      "design_col_2": 2,
+      "design_col_3": 2,
+      "design_col_4": 3,
+      "design_col_5": 3,
+      "design_col_6": 3,
+      "design_col_7": 3,
+      "design_col_8": 3,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 300.9365639229735,
+      "induced_expr": 320.1334731472391,
+      "fold_change": 1.0637905509852872,
+      "switch_score": 20.260699775250885
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_019",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_019",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_019_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_019_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 839.9150770506689,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 839.9150760506689,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 839.9150765506688,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 1.2,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 1,
+      "design_col_2": 2,
+      "design_col_3": 4,
+      "design_col_4": 2,
+      "design_col_5": 8,
+      "design_col_6": 1,
+      "design_col_7": 3,
+      "design_col_8": 2,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 839.9150760506689,
+      "induced_expr": 338.0389101278398,
+      "fold_change": 0.4024679634485418,
+      "switch_score": -501.4736979593805
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_020",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_020",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_020_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_020_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.96401218622,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 197696.9640111862,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 197696.9640116862,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 1.2,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 2,
+      "design_col_2": 1,
+      "design_col_3": 3,
+      "design_col_4": 3,
+      "design_col_5": 6,
+      "design_col_6": 1,
+      "design_col_7": 3,
+      "design_col_8": 3,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 197696.9640111862,
+      "induced_expr": 113.50108156723155,
+      "fold_change": 0.0005741164622073274,
+      "switch_score": -197583.4623555025
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_021",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_021",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_021_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_021_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.9640111862,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 281.75371308061233,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 98989.35886213342,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 2,
+      "design_col_2": 1,
+      "design_col_3": 2,
+      "design_col_4": 1,
+      "design_col_5": 3,
+      "design_col_6": 2,
+      "design_col_7": 1,
+      "design_col_8": 2,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 281.75371308061233,
+      "induced_expr": 197696.9640111862,
+      "fold_change": 701.6658692786182,
+      "switch_score": 198116.87616738424
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_022",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_022",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_022_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_022_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.9640111862,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 291.58011952836785,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 98994.27206535729,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 3,
+      "design_col_2": 3,
+      "design_col_3": 2,
+      "design_col_4": 1,
+      "design_col_5": 4,
+      "design_col_6": 1,
+      "design_col_7": 1,
+      "design_col_8": 1,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 291.58011952836785,
+      "induced_expr": 197696.9640111862,
+      "fold_change": 678.019353071677,
+      "switch_score": 198083.4032447295
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_023",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_023",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_023_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_023_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.9640111862,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 308.86319164263136,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 99002.91360141443,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 2,
+      "design_col_2": 2,
+      "design_col_3": 2,
+      "design_col_4": 3,
+      "design_col_5": 12,
+      "design_col_6": 3,
+      "design_col_7": 2,
+      "design_col_8": 3,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 308.86319164263136,
+      "induced_expr": 197696.9640111862,
+      "fold_change": 640.0793923023709,
+      "switch_score": 198028.18021184596
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_024",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_024",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_024_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_024_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.9640111862,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 314.81002269592733,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 99005.88701694107,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 4,
+      "design_col_2": 1,
+      "design_col_3": 5,
+      "design_col_4": 3,
+      "design_col_5": 5,
+      "design_col_6": 4,
+      "design_col_7": 3,
+      "design_col_8": 1,
+      "design_col_9": 2
+    },
+    "empirical_values": {
+      "basal_expr": 314.81002269592733,
+      "induced_expr": 197696.9640111862,
+      "fold_change": 627.9881508160884,
+      "switch_score": 198010.14213930638
+    }
+  },
+  {
+    "collection": "gates",
+    "name": "Switch_025",
+    "system": "CLASSIC_single_input",
+    "group": "single_input_switch",
+    "regulator": "Switch_025",
+    "gate_type": "NOT",
+    "color": "4A90E2",
+    "model": "Switch_025_model",
+    "structure": "single_input_switch_structure"
+  },
+  {
+    "collection": "models",
+    "name": "Switch_025_model",
+    "functions": {
+      "response_function": "Hill_response",
+      "input_composition": "linear_input_composition"
+    },
+    "parameters": [
+      {
+        "name": "ymax",
+        "value": 197696.9640111862,
+        "description": "Maximal transcription"
+      },
+      {
+        "name": "ymin",
+        "value": 315.42397505196203,
+        "description": "Minimal transcription"
+      },
+      {
+        "name": "K",
+        "value": 99006.19399311909,
+        "description": "Half-maximum"
+      },
+      {
+        "name": "n",
+        "value": 3.0,
+        "description": "Empirical cooperativity proxy"
+      }
+    ],
+    "design_assignment": {
+      "design_col_1": 3,
+      "design_col_2": 4,
+      "design_col_3": 5,
+      "design_col_4": 1,
+      "design_col_5": 4,
+      "design_col_6": 2,
+      "design_col_7": 2,
+      "design_col_8": 1,
+      "design_col_9": 1
+    },
+    "empirical_values": {
+      "basal_expr": 315.42397505196203,
+      "induced_expr": 197696.9640111862,
+      "fold_change": 626.7658125182722,
+      "switch_score": 198008.30584865253
+    }
+  }
+]
