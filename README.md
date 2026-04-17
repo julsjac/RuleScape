@@ -14,10 +14,12 @@ This repo depends on Git submodules for the main application code. Clone it with
 
 ```bash
 git clone --recurse-submodules https://github.com/julsjac/RuleScape.git
-cd RuleScape
+cd RuleScape/pipeline-ui-app
+./scripts/install_frontend.sh
 ```
 
-To update submodules:
+To launch the frontend, run:
 ```bash
-git submodule update --remote --recursive
+npm run dev
 ```
+Then open: `http://127.0.0.1:5173`
