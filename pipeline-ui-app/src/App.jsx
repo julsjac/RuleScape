@@ -188,10 +188,15 @@ export default function App() {
     result: null,
     error: "",
   });
+  const [selectedKnoxContext, setSelectedKnoxContext] = useState({
+    evalName: "",
+    groupId: null,
+    ruleGroupId: null,
+  });
   const [mlRunState, setMlRunState] = useState({
-  phase: "idle",
-  result: null,
-  error: "",
+    phase: "idle",
+    result: null,
+    error: "",
   });
   const [mlParams, setMlParams] = useState({
     trainSplit: 70,
@@ -303,6 +308,20 @@ export default function App() {
     return;
   }
 
+  // --- KNOX SELECTION VALIDATION ---
+  if (
+    !selectedKnoxContext.evalName ||
+    selectedKnoxContext.groupId == null ||
+    selectedKnoxContext.ruleGroupId == null
+  ) {
+    setMlRunState({
+      phase: "error",
+      result: null,
+      error: "No Knox selection provided.",
+    });
+    return;
+  }
+    
   // --- INITIALIZE STATE ---
   setMlRunState({
     phase: "initializing",
