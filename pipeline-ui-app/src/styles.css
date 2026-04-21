@@ -1022,6 +1022,82 @@ select.config-control {
   align-items: flex-start;
 }
 
+/* ML parameter slider base */
+.ml-slider {
+  width: 100%;
+  appearance: none;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+  cursor: pointer;
+}
+
+/* WebKit track */
+.ml-slider::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Filled portion effect is typically simulated via accent color */
+.ml-slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  border: 2px solid rgba(6, 19, 24, 0.9);
+  box-shadow: 0 0 0 3px rgba(134, 242, 255, 0.18);
+  margin-top: -5px;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+}
+
+.ml-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 5px rgba(134, 242, 255, 0.18);
+}
+
+/* Firefox support */
+.ml-slider::-moz-range-track {
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ml-slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: var(--accent);
+  border: 2px solid rgba(6, 19, 24, 0.9);
+  box-shadow: 0 0 0 3px rgba(134, 242, 255, 0.18);
+}
+
+.ml-param-row {
+  display: grid;
+  grid-template-columns: 160px 1fr 60px;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface-panel);
+}
+
+.ml-param-label {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.ml-param-value {
+  font-family: "IBM Plex Mono", monospace;
+  color: var(--accent);
+  text-align: right;
+}
+
 .file-path {
   display: block;
   margin-top: 8px;
