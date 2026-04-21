@@ -12,9 +12,15 @@ const modelChoices = [
     active: false,
   },
   {
-    title: "MLP",
-    badge: "Optional",
-    note: "Only useful later if the dataset gets much larger.",
+    title: "Decision Tree",
+    badge: "Binary Classification",
+    note: "Classify as good or bad designs.",
+    active: false,
+  },
+  {
+    title: "Decision Tree",
+    badge: "Regression",
+    note: "Predict performance score of designs.",
     active: false,
   },
 ];
