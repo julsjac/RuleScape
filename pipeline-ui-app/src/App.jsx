@@ -297,7 +297,7 @@ export default function App() {
     }
   };
 
-  const handleRunML = async (mlStagePayload) => {
+  const handleRunML = async (incoming) => {
   // --- VALIDATION ---
   if (!mlParams.trainSplit || !mlParams.topNFeatures) {
     setMlRunState({
@@ -341,7 +341,7 @@ export default function App() {
     rule_group_id: selectedKnoxContext.ruleGroupId,
 
     // <-- coming from MlStage
-    models: mlStagePayload?.models || [],
+    models: incoming.models || [],
 
   };
 
