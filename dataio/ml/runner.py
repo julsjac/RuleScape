@@ -4,11 +4,11 @@ from dataio.ml.pipeline import run_ml_pipeline
 
 def run_full_ml(payload):
     eval_name = payload.get("evalName")
-    group_id = payload.get("groupID")
-    rule_group_id = payload.get("ruleGroupID")
+    group_id = payload.get("groupId")
+    rule_group_id = payload.get("ruleGroupId")
 
-    selected_models = payload.get("models")
-    train_split = payload.get("train_splt")
+    selected_models = payload.get("models", [])
+    train_split = payload.get("train_split")
     top_n_features = payload.get("top_n_features")
     threshold = payload.get("threshold")
     
