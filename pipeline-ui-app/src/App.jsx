@@ -531,7 +531,7 @@ export default function App() {
                 <div className="ml-param-block">
                   <div className="ml-param-header">
                   <span className="ml-param-label">Train/Test Split</span>
-                  
+                  </div>
                 <input
                   type="range"
                   min="10"
@@ -552,6 +552,7 @@ export default function App() {
                 <div className="ml-param-block">
                   <div className="ml-param-header">
                   <span className="ml-param-label">Top N Features</span>
+                  </div>
                   
                 <input
                   type="number"
@@ -571,6 +572,7 @@ export default function App() {
                 <div className="ml-param-block">
                   <div className="ml-param-header">
                   <span className="ml-param-label">Threshold</span>
+                  </div>
                   
                 <input
                   type="number"
