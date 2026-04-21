@@ -3,12 +3,15 @@ from dataio.ml.pipeline import run_ml_pipeline
 
 
 def run_full_ml(payload):
-    eval_name = payload["evalName"]
-    group_id = payload["groupID"]
-    rule_group_id = payload["ruleGroupID"]
+    eval_name = payload.get("evalName")
+    group_id = payload.get("groupID")
+    rule_group_id = payload.get("ruleGroupID")
 
-    selected_models = payload["models"]
-    params = payload["params"]
+    selected_models = payload.get("models")
+    train_split = payload.get("train_splt")
+    top_n_features = payload.get("top_n_features")
+    threshold = payload.get("threshold")
+    
 
     _, design_df, _ = rule_evaluate(
         eval_name,
