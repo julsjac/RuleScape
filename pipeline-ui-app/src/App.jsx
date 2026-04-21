@@ -315,6 +315,11 @@ export default function App() {
     train_split: mlParams.trainSplit,
     top_n_features: mlParams.topNFeatures,
     threshold: mlParams.threshold,
+
+    // Knox Context
+    eval_name: selectedKnoxContext.evalName,
+    group_id: selectedKnoxContext.groupId,
+    rule_group_id: selectedKnoxContext.ruleGroupId,
   };
 
   // --- PROGRESS TRANSITION ---
