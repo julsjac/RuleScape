@@ -1074,15 +1074,20 @@ select.config-control {
   box-shadow: 0 0 0 3px rgba(134, 242, 255, 0.18);
 }
 
-.ml-param-row {
-  display: grid;
-  grid-template-columns: 160px 1fr 60px;
-  align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
+.ml-param-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
   border: 1px solid var(--line);
   border-radius: 18px;
   background: var(--surface-panel);
+}
+
+.ml-param-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .ml-param-label {
