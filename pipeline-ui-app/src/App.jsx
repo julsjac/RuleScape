@@ -188,6 +188,17 @@ export default function App() {
     result: null,
     error: "",
   });
+  const [mlRunState, setMlRunState] = useState({
+  phase: "idle",
+  result: null,
+  error: "",
+  });
+  const [mlParams, setMlParams] = useState({
+    trainSplit: 70,
+    topNFeatures: 10,
+    threshold: 0.5,
+  });
+
 
   const currentStep = steps[activeIndex];
   const ActiveStage = stageComponents[currentStep.id];
@@ -208,6 +219,10 @@ export default function App() {
 
   const handleCelloInputChange = (id, nextValue) => {
     setCelloInputs((current) => ({ ...current, [id]: nextValue }));
+  };
+
+  const handleMlParamChange = (id, value) => {
+    setMlParams((prev) => ({ ...prev, [id]: value }));
   };
 
   const handleImportedNameChange = (id, nextValue) => {
@@ -276,6 +291,76 @@ export default function App() {
       });
     }
   };
+
+  const handleRunML = async () => {
+  // --- VALIDATION ---
+  if (!mlParams.trainSplit || !mlParams.topNFeatures) {
+    setMlRunState({
+      phase: "error",
+      result: null,
+      error: "Missing required ML parameters.",
+    });
+    return;
+  }
+
+  // --- INITIALIZE STATE ---
+  setMlRunState({
+    phase: "initializing",
+    result: null,
+    error: "",
+  });
+
+  // --- BUILD PAYLOAD ---
+  const payload = {
+    train_split: mlParams.trainSplit,
+    top_n_features: mlParams.topNFeatures,
+    threshold: mlParams.threshold,
+  };
+
+  // --- PROGRESS TRANSITION ---
+  const runningTimer = window.setTimeout(() => {
+    setMlRunState((current) =>
+      current.phase === "initializing"
+        ? { ...current, phase: "running" }
+        : current
+    );
+  }, 250);
+
+  try {
+    // --- API REQUEST ---
+    const response = await fetch("http://127.0.0.1:8000/run-ml", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+
+    const data = await response.json();
+    window.clearTimeout(runningTimer);
+
+    // --- ERROR CHECK ---
+    if (!response.ok) {
+      throw new Error(data.error || "ML run failed.");
+    }
+
+    // --- SUCCESS ---
+    setMlRunState({
+      phase: "completed",
+      result: data,
+      error: "",
+    });
+  } catch (error) {
+    window.clearTimeout(runningTimer);
+
+    // --- FAILURE ---
+    setMlRunState({
+      phase: "error",
+      result: null,
+      error: error.message || "ML execution failed.",
+    });
+  }
+};
 
   return (
     <div className={`app-shell${sidebarCollapsed ? " sidebar-collapsed" : ""}`}>
@@ -365,23 +450,34 @@ export default function App() {
         <div className="content-grid">
           <section className="stage-view">
             <ActiveStage
-              runParams={runParams}
-              runParameterFields={runParameterFields}
-              onRunParamChange={handleRunParamChange}
-              celloInputs={celloInputs}
-              importedNames={importedNames}
-              onCelloInputChange={handleCelloInputChange}
-              onImportedNameChange={handleImportedNameChange}
-              runState={runState}
-              runResult={runState.result}
-              viewMode={celloViewMode}
-              onEditInputs={() => setCelloViewMode("inputs")}
-              isRunning={isRunning}
+              {...(currentStep.id === "cello" && {
+                runParams,
+                runParameterFields,
+                onRunParamChange: handleRunParamChange,
+                celloInputs,
+                importedNames,
+                onCelloInputChange: handleCelloInputChange,
+                onImportedNameChange: handleImportedNameChange,
+                runState,
+                runResult: runState.result,
+                viewMode: celloViewMode,
+                onEditInputs: () => setCelloViewMode("inputs"),
+                isRunning,
+              })}
+              {...(currentStep.id === "ml" && {
+                mlParams,
+                onMlParamChange: handleMlParamChange,
+                onRunML: handleRunML,
+                mlRunState,
+              })}
             />
           </section>
 
+
           <aside className="preview-rail">
             <section className="card preview-card">
+              {currentStep.id === "cello" && (  
+              <>
               <span className="sidebar-label">Run parameters</span>
               <div className="config-grid compact-config-grid">
                 {runParameterFields.map((field) => (
@@ -424,6 +520,59 @@ export default function App() {
                   </p>
                 ) : null}
               </div>
+              </>
+              )}
+
+              {currentStep.id === "ml" && (
+              <>
+                <span className="sidebar-label">ML Configuration</span>
+                <label className="config-item">
+                <span>Train/Test Split: {mlParams.trainSplit}%</span>
+                <input
+                  type="range"
+                  min="50"
+                  max="90"
+                  value={mlParams.trainSplit}
+                  onChange={(e) =>
+                    handleMlParamChange("trainSplit", Number(e.target.value))
+                  }
+                />
+              </label>
+
+              <label className="config-item">
+                <span>Top N Features</span>
+                <input
+                  type="number"
+                  value={mlParams.topNFeatures}
+                  onChange={(e) =>
+                    handleMlParamChange("topNFeatures", Number(e.target.value))
+                  }
+                />
+              </label>
+
+              <label className="config-item">
+                <span>Threshold</span>
+                <input
+                  type="number"
+                  step="0.01"
+                  value={mlParams.threshold}
+                  onChange={(e) =>
+                    handleMlParamChange("threshold", Number(e.target.value))
+                  }
+                />
+              </label>
+      
+              <button className="primary-button wide" onClick={handleRunML}>
+                {mlRunState?.phase === "running"
+                  ? "Running ML..."
+                  : "Run ML"}
+              </button>
+
+              {mlRunState?.error && (
+                <p className="error-text compact">{mlRunState.error}</p>
+              )}
+            </>
+          )} 
             </section>
           </aside>
         </div>

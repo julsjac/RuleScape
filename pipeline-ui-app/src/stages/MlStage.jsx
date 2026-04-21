@@ -25,14 +25,8 @@ const modelChoices = [
   },
 ];
 
-const trainingSetup = [
-  { label: "Feature source", value: "Knox rule matrix" },
-  { label: "Target", value: "Design score" },
-  { label: "Train split", value: "70%" },
-  { label: "Validation", value: "15%" },
-];
-
-export function MlStage() {
+export function MlStage({ mlParams, onMlParamChange, onRunML, mlRunState }) {
+  if (!mlParams || !mlRunState) return null;
   return (
     <div className="stage-grid">
       <section className="card">
@@ -50,15 +44,6 @@ export function MlStage() {
               note={choice.note}
               active={choice.active}
             />
-          ))}
-        </div>
-      </section>
-
-      <section className="card compact-card">
-        <h3>Training setup</h3>
-        <div className="config-grid">
-          {trainingSetup.map((item) => (
-            <ConfigItem key={item.label} label={item.label} value={item.value} />
           ))}
         </div>
       </section>
