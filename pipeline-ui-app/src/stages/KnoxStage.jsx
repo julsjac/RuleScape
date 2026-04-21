@@ -1,13 +1,42 @@
+import { useRef, useState } from "react";
+
 const fileNotes = {
   designs: "ordered selected parts per exported design",
   partLibrary: "all part IDs and roles resolved from the UCF",
   weight: "Cello circuit score for each exported design",
   summary: "human-readable summary of the ranked adapter output",
 };
-
+export const knoxInputBundle = [
+  {
+    id: "designs",
+    title: "designs.csv",
+    note: "ordered selected parts per exported design",
+    accept: ".csv",
+    placeholder: "Import or write the designs CSV",
+    language: "plaintext",
+  },
+  {
+    id: "partLibrary",
+    title: "part_library.csv",
+    note: "all part IDs and roles resolved from the UCF",
+    accept: ".csv",
+    placeholder: "Import or write the part library CSV",
+    language: "plaintext",
+  },
+  {
+    id: "weight",
+    title: "weight.csv",
+    note: "Cello circuit score for each exported design",
+    accept: ".csv",
+    placeholder: "Import or write the weight CSV",
+    language: "plaintext",
+  },
+];
 export function BridgeStage({ runResult }) {
   const candidates = runResult?.summary?.candidates ?? [];
   const selectedParts = candidates[0]?.selected_parts ?? [];
+  const [openId, setOpenId] = useState(null);
+  const fileInputRefs = useRef({});
   const generatedFiles = runResult
     ? [
         { key: "designs", name: "designs.csv", path: runResult.files.designs },
@@ -37,6 +66,19 @@ export function BridgeStage({ runResult }) {
           <MappingItem
             left="Cello circuit score for each exported design"
             right="weight.csv"
+          />
+        </div>
+      </section>
+
+      <section className="card">
+        <h3>Rules CSV </h3>
+        <p className="muted">
+          Input your rules.csv for Knox
+        </p>
+        <div className="mapping-list">
+          <MappingItem
+            left="selected parts from the resolved design_assignment"
+            right="designs.csv"
           />
         </div>
       </section>
