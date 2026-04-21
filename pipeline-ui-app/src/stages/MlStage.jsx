@@ -32,7 +32,7 @@ const trainingSetup = [
   { label: "Validation", value: "15%" },
 ];
 
-export function MlStage() {
+export function MlStage({ mlParams, onMlParamChange, onRunML, mlRunState }) {
   return (
     <div className="stage-grid">
       <section className="card">
@@ -62,6 +62,63 @@ export function MlStage() {
           ))}
         </div>
       </section>
+    </div>
+    {/* RIGHT SIDE (THIS IS WHERE YOUR BUTTON GOES) */}
+    <aside className="card preview-card">
+      <h3>ML Configuration</h3>
+      
+      {/* Train/Test Split */}
+        <label className="config-item">
+          <span>Train/Test Split: {mlParams.trainSplit}%</span>
+          <input
+            type="range"
+            min="50"
+            max="90"
+            value={mlParams.trainSplit}
+            onChange={(e) =>
+              onMlParamChange("trainSplit", Number(e.target.value))
+            }
+          />
+        </label>
+
+        {/* Top N Features */}
+        <label className="config-item">
+          <span>Top N Features</span>
+          <input
+            type="number"
+            value={mlParams.topNFeatures}
+            min="1"
+            onChange={(e) =>
+              onMlParamChange("topNFeatures", Number(e.target.value))
+            }
+          />
+        </label>
+
+        {/* Threshold */}
+        <label className="config-item">
+          <span>Classification Threshold</span>
+          <input
+            type="number"
+            step="0.01"
+            min="0"
+            max="1"
+            value={mlParams.threshold}
+            onChange={(e) =>
+              onMlParamChange("threshold", Number(e.target.value))
+            }
+          />
+        </label>
+
+        {/* RUN BUTTON (your code goes here) */}
+        <button className="primary-button wide" onClick={onRunML}>
+          {mlRunState?.phase === "running" ? "Running ML..." : "Run ML"}
+        </button>
+
+        {/* ERROR DISPLAY (your code goes here) */}
+        {mlRunState?.error && (
+          <p className="error-text compact">{mlRunState.error}</p>
+        )}
+      </aside>
     </div>
   );
 }
