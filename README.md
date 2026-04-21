@@ -52,4 +52,10 @@ To launch the frontend, run:
 ```bash
 npm run dev
 ```
+
+Then, to launch Cello:
+```bash
+cd /Users/trieutran/RuleScape/cello
+python3.10 cello_knox/pipeline_server.py
+```
 Then open: `http://127.0.0.1:5173`
