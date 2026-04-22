@@ -816,7 +816,12 @@ export default function App() {
               onRunML: handleRunML,
               mlRunState,
             }
-          : {};
+          : currentStep.id === "report"
+            ? {
+                mlRunState,
+                knoxRunResult: knoxRunState.result,
+              }
+            : {};
 
   return (
     <div className={`app-shell${sidebarCollapsed ? " sidebar-collapsed" : ""}`}>
