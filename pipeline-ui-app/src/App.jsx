@@ -306,6 +306,21 @@ export default function App() {
   const [celloInputs, setCelloInputs] = useState(createEmptyCelloInputs);
   const [importedNames, setImportedNames] = useState(createEmptyImportedNames);
   const [celloViewMode, setCelloViewMode] = useState("inputs");
+  const [runState, setRunState] = useState({
+    phase: "idle",
+    result: null,
+    error: "",
+  });
+  const [selectedKnoxContext, setSelectedKnoxContext] = useState({
+    evalName: "",
+    groupId: null,
+    ruleGroupId: null,
+  });
+  const [mlRunState, setMlRunState] = useState({
+    phase: "idle",
+    result: null,
+    error: "",
+  });
 
   const [knoxBundleSource, setKnoxBundleSource] = useState("generated");
   const [knoxBundleInputs, setKnoxBundleInputs] = useState(createEmptyKnoxBundleInputs);
@@ -557,6 +572,9 @@ export default function App() {
     }
   };
 
+  const handleRunML = async (incoming) => {
+  // --- VALIDATION ---
+  if (!mlParams.trainSplit || !mlParams.topNFeatures) {
   const handleRunML = async (nextPayload = null) => {
     const resolvedParams = {
       trainSplit: Number(nextPayload?.trainSplit ?? mlParams.trainSplit),
@@ -581,6 +599,41 @@ export default function App() {
       error: "",
       action: "",
     });
+
+  // --- KNOX SELECTION VALIDATION ---
+  if (
+    !selectedKnoxContext.evalName ||
+    selectedKnoxContext.groupId == null ||
+    selectedKnoxContext.ruleGroupId == null
+  ) {
+    setMlRunState({
+      phase: "error",
+      result: null,
+      error: "No Knox selection provided.",
+    });
+    return;
+  }
+    
+  // --- INITIALIZE STATE ---
+  setMlRunState({
+    phase: "initializing",
+    result: null,
+    error: "",
+  });
+
+  // --- BUILD PAYLOAD ---
+  const payload = {
+    train_split: mlParams.trainSplit,
+    top_n_features: mlParams.topNFeatures,
+    threshold: mlParams.threshold,
+
+    // Knox Context
+    eval_name: selectedKnoxContext.evalName,
+    group_id: selectedKnoxContext.groupId,
+    rule_group_id: selectedKnoxContext.ruleGroupId,
+
+    // <-- coming from MlStage
+    models: incoming.models || [],
 
     const payload = {
       train_split: resolvedParams.trainSplit,

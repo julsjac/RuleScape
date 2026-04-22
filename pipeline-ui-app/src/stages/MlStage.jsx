@@ -42,11 +42,10 @@ export function MlStage({ mlParams, onMlParamChange, onRunML, mlRunState }) {
   }
 
   function handleRun() {
-    const payload = {
-      ...mlParams,
+    onRunML({
+      mlParams,
       models: Array.from(selectedModels),
-    };
-    onRunML(payload);
+    });
   }
   
   return (
