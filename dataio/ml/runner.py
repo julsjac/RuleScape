@@ -1,4 +1,16 @@
-from knox.client import rule_evaluate
+import requests
+
+KNOX_URL = "http://127.0.0.1:8080"
+
+def rule_evaluate(payload: dict):
+    response = requests.post(
+        f"{KNOX_URL}/evaluate",
+        json=payload,
+        timeout=60
+    )
+    response.raise_for_status()
+    return response.json()
+    
 from dataio.ml.pipeline import run_ml_pipeline
 
 
