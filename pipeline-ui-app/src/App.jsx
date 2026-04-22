@@ -818,9 +818,26 @@ export default function App() {
               onMlParamChange: handleMlParamChange,
               onRunML: handleRunML,
               mlRunState,
-                        knoxRunState,
+              knoxRunState,
             }
-          : {};
+          : currentStep.id === "report"
+            ? {
+                celloInputs,
+                importedNames,
+                celloRunParams,
+                celloRunState,
+                celloRunResult: celloRunState.result,
+                knoxBundleSource,
+                knoxBundleInputs,
+                knoxBundleNames,
+                knoxRuleInputs,
+                knoxRuleNames,
+                knoxRunParams,
+                knoxRunState,
+                mlParams,
+                mlRunState,
+              }
+            : {};
 
   return (
     <div className={`app-shell${sidebarCollapsed ? " sidebar-collapsed" : ""}`}>
@@ -1121,15 +1138,6 @@ export default function App() {
                 </div>
 
                 <div className="run-control-stack">
-                  <button
-                    className="primary-button wide"
-                    type="button"
-                    onClick={() => handleRunML()}
-                    disabled={isMlRunning}
-                  >
-                    {isMlRunning ? "Running ML..." : "Run ML"}
-                  </button>
-
                   {mlRunState.error ? <p className="error-text compact">{mlRunState.error}</p> : null}
                 </div>
               </section>

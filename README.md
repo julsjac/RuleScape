@@ -48,17 +48,13 @@ cd RuleScape/pipeline-ui-app
 ./scripts/install_frontend.sh
 ```
 
-Before running the front end, ensure `graphviz` and `yosys` are installed on your system for compatibility with Cello
+The installer now sets up:
 
-### Linux/WSL
-```bash
-sudo apt install graphviz yosys
-```
+- Node.js and frontend `npm` dependencies
+- Cello Python dependencies from `cello/requirements.txt`
+- Cello system dependencies: `yosys`, `graphviz` (`dot`), and `java`
 
-### Mac
-```bash
-brew install graphviz yosys
-```
+On macOS the script uses Homebrew. On Linux it uses Homebrew when available, otherwise `apt-get`.
 
 ## Launch apps
 Each of these services must be launched in their own terminal.
@@ -72,9 +68,11 @@ npm run dev
 Then, to launch Cello:
 ```bash
 cd RuleScape/cello
-python cello_knox/pipeline_server.py
+python3.10 cello_knox/pipeline_server.py
 ```
 Then open: `http://127.0.0.1:5173`
+
+If `python3.10` is not installed on your machine, use the Python 3.10+ interpreter that `./scripts/install_frontend.sh` selected and printed at the end of setup.
 
 
 To launch Knox:

@@ -1406,6 +1406,65 @@ select.config-control {
   margin-top: 18px;
 }
 
+.config-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.config-row {
+  display: grid;
+  gap: 8px;
+}
+
+.config-label {
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.result-section,
+.ml-results-stack {
+  display: grid;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.ml-result-card {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--surface-panel);
+}
+
+.ml-result-title {
+  display: block;
+  font-size: 20px;
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+.ml-feature-table th:last-child,
+.ml-feature-table td:last-child {
+  width: 180px;
+}
+
+.report-flow-table td {
+  vertical-align: top;
+}
+
+.report-cell-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 220px;
+}
+
+.report-subtable {
+  margin-top: 18px;
+}
+
 @media (max-width: 1280px) {
   .app-shell,
   .app-shell.sidebar-collapsed,
