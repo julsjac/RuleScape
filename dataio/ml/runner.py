@@ -1,23 +1,17 @@
 import requests
 
-KNOX_URL = "http://127.0.0.1:8080"
+BASE_URL = "http://127.0.0.1:8080"
 
-import requests
-
-def rule_evaluate(eval_name, group_id, rule_group_id):
-    payload = {
-        "evalName": eval_name,
-        "groupId": group_id,
-        "ruleGroupId": rule_group_id,
-    }
-
-    response = requests.post(
-        "http://127.0.0.1:8080/rule/evaluate",
-        json=payload,
-        timeout=60,
+def rule_evaluate(eval_name, group_id, rule_group_id, labeling_method="sign"):
+    url = (
+        f"{BASE_URL}/rule/evaluate?"
+        f"evaluationName={eval_name}&"
+        f"designGroupID={group_id}&"
+        f"rulesGroupID={rule_group_id}&"
+        f"labelingMethod={labeling_method}"
     )
-    print(response.status_code)
-    print(response.text)   # THIS IS CRITICAL
+
+    response = requests.post(url)
     response.raise_for_status()
 
     return response.json()
