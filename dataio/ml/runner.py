@@ -96,7 +96,7 @@ def run_full_ml(payload):
 
     results, features = run_ml_pipeline(
         design_df,
-        train_split,
+        (train_split/100),
         top_n_features,
         selected_models
     )
