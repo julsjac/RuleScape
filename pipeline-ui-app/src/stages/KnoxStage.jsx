@@ -48,11 +48,11 @@ const generatedFileNotes = {
 };
 
 const rolePalette = [
-  { bg: "rgba(134, 242, 255, 0.16)", border: "rgba(134, 242, 255, 0.28)", text: "#86f2ff" },
-  { bg: "rgba(141, 245, 214, 0.14)", border: "rgba(141, 245, 214, 0.26)", text: "#8df5d6" },
-  { bg: "rgba(255, 211, 126, 0.14)", border: "rgba(255, 211, 126, 0.26)", text: "#ffd37e" },
-  { bg: "rgba(210, 182, 255, 0.14)", border: "rgba(210, 182, 255, 0.26)", text: "#d2b6ff" },
-  { bg: "rgba(255, 159, 159, 0.14)", border: "rgba(255, 159, 159, 0.26)", text: "#ffb199" },
+  { bg: "rgba(134, 242, 255, 0.12)", border: "rgba(134, 242, 255, 0.2)", text: "#86f2ff" },
+  { bg: "rgba(141, 245, 214, 0.12)", border: "rgba(141, 245, 214, 0.2)", text: "#8df5d6" },
+  { bg: "rgba(255, 211, 126, 0.12)", border: "rgba(255, 211, 126, 0.2)", text: "#ffd37e" },
+  { bg: "rgba(210, 182, 255, 0.12)", border: "rgba(210, 182, 255, 0.2)", text: "#d2b6ff" },
+  { bg: "rgba(255, 177, 153, 0.12)", border: "rgba(255, 177, 153, 0.2)", text: "#ffb199" },
 ];
 
 const rawJsonEditorOptions = {
@@ -281,82 +281,6 @@ function buildDesignModules(candidate) {
   }));
 }
 
-function buildPreviewRules(candidates) {
-  if (!candidates.length) {
-    return [];
-  }
-
-  const scores = candidates
-    .map((candidate) => Number(candidate.score))
-    .filter((value) => Number.isFinite(value))
-    .sort((a, b) => a - b);
-  const medianScore = scores[Math.floor(scores.length / 2)] ?? 0;
-  const fullPartCount = Math.max(
-    ...candidates.map((candidate) => candidate.selected_parts?.length ?? 0),
-    0
-  );
-
-  return [
-    {
-      id: "input-mapped",
-      label: "Input mapped",
-      evaluate: (candidate) => (candidate.input_assignments?.length ?? 0) > 0,
-    },
-    {
-      id: "output-mapped",
-      label: "Output mapped",
-      evaluate: (candidate) => (candidate.output_assignments?.length ?? 0) > 0,
-    },
-    {
-      id: "full-chain",
-      label: `${fullPartCount} parts`,
-      evaluate: (candidate) => (candidate.selected_parts?.length ?? 0) === fullPartCount,
-    },
-    {
-      id: "above-median",
-      label: "Above median",
-      evaluate: (candidate) => {
-        const score = Number(candidate.score);
-        return Number.isFinite(score) && score >= medianScore;
-      },
-    },
-    {
-      id: "top-rank",
-      label: "Top rank",
-      evaluate: (candidate) => Number(candidate.rank) === 1,
-    },
-  ];
-}
-
-function buildPreviewMatrixRows(candidates, rules) {
-  return candidates.map((candidate) => ({
-    designId: candidate.designId,
-    title: candidate.selected_gate,
-    score: candidate.score,
-    results: rules.map((rule) => ({
-      ruleId: rule.id,
-      pass: rule.evaluate(candidate),
-      rawStatus: rule.evaluate(candidate) ? 0 : 1,
-    })),
-  }));
-}
-
-function buildRealMatrixRows(evaluation) {
-  return (evaluation?.designs ?? []).map((design) => ({
-    designId: design.designId,
-    title: design.designId,
-    score: design.score,
-    results: (evaluation?.rules ?? []).map((rule) => {
-      const rawStatus = design.ruleStatuses?.[rule.id];
-      return {
-        ruleId: rule.id,
-        pass: rawStatus === 0,
-        rawStatus,
-      };
-    }),
-  }));
-}
-
 function buildCandidateCards(evaluation, fallbackCandidates) {
   if (evaluation?.executed) {
     return evaluation.designs.map((design) => ({
@@ -377,42 +301,9 @@ function buildCandidateCards(evaluation, fallbackCandidates) {
   }));
 }
 
-function selectRuleResults(selectedDesignId, evaluation, previewRules, previewCandidates) {
-  if (evaluation?.executed) {
-    const design = evaluation.designs.find((item) => item.designId === selectedDesignId);
-    if (!design) {
-      return { kept: [], eliminated: [] };
-    }
-
-    const kept = [];
-    const eliminated = [];
-    evaluation.rules.forEach((rule) => {
-      const status = design.ruleStatuses?.[rule.id];
-      if (status === 0) {
-        kept.push(rule);
-      } else if (status === 1) {
-        eliminated.push(rule);
-      }
-    });
-    return { kept, eliminated };
-  }
-
-  const candidate = previewCandidates.find((item) => item.designId === selectedDesignId);
-  if (!candidate) {
-    return { kept: [], eliminated: [] };
-  }
-
-  const kept = [];
-  const eliminated = [];
-  previewRules.forEach((rule) => {
-    if (rule.evaluate(candidate)) {
-      kept.push(rule);
-    } else {
-      eliminated.push(rule);
-    }
-  });
-
-  return { kept, eliminated };
+function formatCandidateScore(score) {
+  const numericScore = Number(score);
+  return Number.isFinite(numericScore) ? numericScore.toFixed(4) : "no score";
 }
 
 function buildRuleMetricSummary(evaluation) {
@@ -466,10 +357,6 @@ export function BridgeStage({
     [generatedOutputPrefix, knoxBundleInputs]
   );
   const sourceCandidates = knoxBundleSource === "uploaded" ? uploadedCandidates : generatedCandidates;
-  const candidateByDesignId = useMemo(
-    () => Object.fromEntries(sourceCandidates.map((candidate) => [candidate.designId, candidate])),
-    [sourceCandidates]
-  );
 
   const hasGeneratedBundle = Boolean(runResult);
   const filePreviews = runResult?.filePreviews ?? {};
@@ -506,17 +393,7 @@ export function BridgeStage({
       ]
     : [];
 
-  const previewRules = useMemo(() => buildPreviewRules(sourceCandidates), [sourceCandidates]);
-  const previewMatrixRows = useMemo(
-    () => buildPreviewMatrixRows(sourceCandidates, previewRules),
-    [previewRules, sourceCandidates]
-  );
   const evaluation = knoxRunResult?.evaluation || null;
-  const matrixRows = useMemo(
-    () => (evaluation?.executed ? buildRealMatrixRows(evaluation) : previewMatrixRows),
-    [evaluation, previewMatrixRows]
-  );
-  const ruleColumns = evaluation?.executed ? evaluation.rules : previewRules;
   const candidateCards = useMemo(
     () => buildCandidateCards(evaluation, sourceCandidates),
     [evaluation, sourceCandidates]
@@ -534,11 +411,8 @@ export function BridgeStage({
     ? "Raw Knox /rule/evaluate response"
     : "Current Knox pipeline payload";
   const availableDesignIds = useMemo(
-    () =>
-      evaluation?.executed
-        ? evaluation.designs.map((design) => design.designId)
-        : sourceCandidates.map((candidate) => candidate.designId),
-    [evaluation, sourceCandidates]
+    () => candidateCards.map((candidate) => candidate.designId),
+    [candidateCards]
   );
 
   useEffect(() => {
@@ -552,23 +426,10 @@ export function BridgeStage({
   }, [knoxRunResult?.requestId, knoxRunResult?.action]);
 
   const selectedCandidate =
-    candidateByDesignId[selectedDesignId] ||
-    sourceCandidates.find((candidate) => candidate.designId === selectedDesignId) ||
-    sourceCandidates[0] ||
-    null;
+    sourceCandidates.find((candidate) => candidate.designId === selectedDesignId) || sourceCandidates[0] || null;
   const selectedModules = useMemo(() => buildDesignModules(selectedCandidate), [selectedCandidate]);
-  const selectedRuleResults = useMemo(
-    () => selectRuleResults(selectedDesignId, evaluation, previewRules, sourceCandidates),
-    [evaluation, previewRules, selectedDesignId, sourceCandidates]
-  );
   const selectedRealDesign =
     evaluation?.designs?.find((design) => design.designId === selectedDesignId) || evaluation?.designs?.[0];
-  const maxScore = Math.max(
-    ...candidateCards
-      .map((candidate) => Number(candidate.score))
-      .filter((value) => Number.isFinite(value)),
-    1
-  );
 
   const toggleGeneratedOpen = (name) => {
     setOpenGeneratedName((current) => (current === name ? null : name));
@@ -949,163 +810,92 @@ export function BridgeStage({
       <section className="card full-span">
         <div className="card-header-row">
           <div>
-            <h3>Selected design preview</h3>
             <p className="muted compact">
               {evaluation?.executed
-                ? "This design strip stays aligned with the imported Knox bundle while the detail panel reflects real Knox rule results."
-                : "This is still a structural preview of the imported design. Use Evaluate Rules to replace the preview logic with actual Knox rule results."}
+                ? "Review the imported designs ranked against the active Knox rule evaluation."
+                : "Review the imported bundle before running Knox rule evaluation."}
             </p>
           </div>
-          {selectedCandidate ? (
-            <span className="chip ready mono">{selectedCandidate.designId}</span>
-          ) : null}
         </div>
 
-        {selectedCandidate ? (
-          <div className="knox-visual-grid">
-            <div className="knox-panel">
-              <div className="knox-stat-grid">
-                <div className="mini-card">
-                  <span className="mini-card-label">Design</span>
-                  <strong className="mini-card-value">{selectedCandidate.selected_gate}</strong>
-                </div>
-                <div className="mini-card">
-                  <span className="mini-card-label">Score</span>
-                  <strong className="mini-card-value">
-                    {Number.isFinite(Number(selectedRealDesign?.score ?? selectedCandidate.score))
-                      ? Number(selectedRealDesign?.score ?? selectedCandidate.score).toFixed(4)
-                      : "—"}
-                  </strong>
-                </div>
-                <div className="mini-card">
-                  <span className="mini-card-label">Parts</span>
-                  <strong className="mini-card-value">{selectedCandidate.selected_parts.length}</strong>
-                </div>
-              </div>
-
-              {selectedModules.length > 0 ? (
-                <div className="design-track-shell">
-                  <div className="design-track">
-                    {selectedModules.map((module, index) => (
-                      <div className="design-module-wrap" key={module.id}>
-                        <div
-                          className="design-module"
-                          style={{
-                            background: module.palette.bg,
-                            borderColor: module.palette.border,
-                          }}
-                        >
-                          <span className="design-module-step">{String(module.step).padStart(2, "0")}</span>
-                          <strong className="design-module-part">{module.part}</strong>
-                          <span className="design-module-role" style={{ color: module.palette.text }}>
-                            {humanizeRole(module.role, index)}
-                          </span>
-                        </div>
-                        {index < selectedModules.length - 1 ? (
-                          <span className="design-module-link" aria-hidden="true">
-                            <i className="fa-solid fa-angle-right" />
-                          </span>
-                        ) : null}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : (
-                <p className="muted empty-state">
-                  Part ordering is not available for the current design source.
-                </p>
-              )}
-            </div>
-
-            <aside className="knox-panel detail-panel">
-              <div className="detail-group">
-                <span className="sidebar-label">Rules keeping this design</span>
-                <div className="detail-chip-list">
-                  {selectedRuleResults.kept.length > 0 ? (
-                    selectedRuleResults.kept.map((rule) => (
-                      <span key={rule.id} className="detail-chip pass">
-                        {rule.label || rule.id}
-                      </span>
-                    ))
-                  ) : (
-                    <span className="detail-chip neutral">No keeping rules recorded yet</span>
-                  )}
-                </div>
-              </div>
-
-              <div className="detail-group">
-                <span className="sidebar-label">Rules eliminating this design</span>
-                <div className="detail-chip-list">
-                  {selectedRuleResults.eliminated.length > 0 ? (
-                    selectedRuleResults.eliminated.map((rule) => (
-                      <span key={rule.id} className="detail-chip fail">
-                        {rule.label || rule.id}
-                      </span>
-                    ))
-                  ) : (
-                    <span className="detail-chip neutral">No eliminating rules for this design</span>
-                  )}
-                </div>
-              </div>
-
-              <div className="detail-group">
-                <span className="sidebar-label">Involved parts</span>
-                <div className="detail-part-list">
-                  {selectedCandidate.selected_parts.length > 0 ? (
-                    selectedCandidate.selected_parts.map((part) => (
-                      <span key={part} className="part-pill">
-                        {part}
-                      </span>
-                    ))
-                  ) : (
-                    <span className="detail-chip neutral">Part list unavailable</span>
-                  )}
-                </div>
-              </div>
-            </aside>
-          </div>
-        ) : (
-          <p className="muted empty-state">
-            The selected design will appear here after Cello generates a bundle or you upload a
-            manual Knox bundle.
-          </p>
-        )}
-      </section>
-
-      <section className="card full-span">
-        <h3>{evaluation?.executed ? "Knox design ranking" : "Ranked bundle preview"}</h3>
         {candidateCards.length > 0 ? (
-          <div className="candidate-card-grid">
-            {candidateCards.map((candidate) => {
-              const numericScore = Number(candidate.score);
-              const width = Number.isFinite(numericScore)
-                ? `${Math.max((numericScore / maxScore) * 100, 6)}%`
-                : "12%";
-              const isSelected = candidate.designId === selectedDesignId;
+          <div className="knox-selector-block">
+            <label className="knox-selector-label" htmlFor="knox-design-selector">
+              Design selection
+            </label>
+            <select
+              id="knox-design-selector"
+              className="config-control knox-design-select"
+              value={selectedDesignId || ""}
+              onChange={(event) => setSelectedDesignId(event.target.value)}
+            >
+              {candidateCards.map((candidate, index) => (
+                <option key={candidate.key} value={candidate.designId}>
+                  {`${index + 1}. ${candidate.title} • ${formatCandidateScore(candidate.score)}`}
+                </option>
+              ))}
+            </select>
 
-              return (
-                <button
-                  key={candidate.key}
-                  type="button"
-                  className={`candidate-card${isSelected ? " selected" : ""}`}
-                  onClick={() => setSelectedDesignId(candidate.designId)}
-                >
-                  <div className="candidate-card-top">
-                    <span className="candidate-rank mono">{candidate.designId}</span>
-                    <strong>{candidate.title}</strong>
+            {selectedCandidate ? (
+              <div className="knox-selector-summary">
+                <div className="knox-selected-design">
+                  <div className="knox-selected-design-meta">
+                    <div className="knox-inline-stat knox-inline-stat-design">
+                      <span className="mini-card-label">Design</span>
+                      <strong
+                        className="knox-inline-value"
+                        title={selectedCandidate.selected_gate}
+                      >
+                        {selectedCandidate.selected_gate}
+                      </strong>
+                    </div>
+                    <div className="knox-inline-stat">
+                      <span className="mini-card-label">Score</span>
+                      <strong className="knox-inline-value">
+                        {Number.isFinite(Number(selectedRealDesign?.score ?? selectedCandidate.score))
+                          ? Number(selectedRealDesign?.score ?? selectedCandidate.score).toFixed(4)
+                          : "—"}
+                      </strong>
+                    </div>
+                    <div className="knox-inline-stat">
+                      <span className="mini-card-label">Parts</span>
+                      <strong className="knox-inline-value">{selectedCandidate.selected_parts.length}</strong>
+                    </div>
                   </div>
-                  <div className="candidate-card-score-row">
-                    <span className="muted mono">
-                      {Number.isFinite(numericScore) ? numericScore.toFixed(4) : "no score"}
-                    </span>
-                    <span className="muted">{candidate.subtitle}</span>
-                  </div>
-                  <div className="candidate-bar-track" aria-hidden="true">
-                    <span className="candidate-bar-fill" style={{ width }} />
-                  </div>
-                </button>
-              );
-            })}
+
+                  {selectedModules.length > 0 ? (
+                    <div className="design-track-shell">
+                      <div className="design-track">
+                        {selectedModules.map((module, index) => (
+                          <div className="design-module-wrap" key={module.id}>
+                            <div
+                              className="design-module"
+                              style={{
+                                background: module.palette.bg,
+                                borderColor: module.palette.border,
+                              }}
+                            >
+                              <span className="design-module-step">
+                                {String(module.step).padStart(2, "0")}
+                              </span>
+                              <strong className="design-module-part">{module.part}</strong>
+                              <span className="design-module-role" style={{ color: module.palette.text }}>
+                                {humanizeRole(module.role, index)}
+                              </span>
+                            </div>
+                            {index < selectedModules.length - 1 ? (
+                              <span className="design-module-link" aria-hidden="true">
+                                <i className="fa-solid fa-angle-right" />
+                              </span>
+                            ) : null}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  ) : null}
+                </div>
+              </div>
+            ) : null}
           </div>
         ) : (
           <p className="muted empty-state">
@@ -1114,69 +904,6 @@ export function BridgeStage({
         )}
       </section>
 
-      <section className="card full-span">
-        <div className="card-header-row">
-          <div>
-            <h3>Rule compliance matrix</h3>
-            <p className="muted compact">
-              {evaluation?.executed
-                ? "Rows are imported Knox designs. A check means the rule keeps the design; an x means the rule eliminates it."
-                : "Until Knox runs, this stays in preview mode using the current adapter outputs."}
-            </p>
-          </div>
-        </div>
-
-        {matrixRows.length > 0 && ruleColumns.length > 0 ? (
-          <div className="table-shell">
-            <table className="results-table rule-matrix-table">
-              <thead>
-                <tr>
-                  <th>Design</th>
-                  {ruleColumns.map((rule) => (
-                    <th key={rule.id}>{rule.label || rule.id}</th>
-                  ))}
-                </tr>
-              </thead>
-              <tbody>
-                {matrixRows.map((row) => {
-                  const isSelected = row.designId === selectedDesignId;
-                  return (
-                    <tr
-                      key={row.designId}
-                      className={isSelected ? "matrix-row-selected" : ""}
-                      onClick={() => setSelectedDesignId(row.designId)}
-                    >
-                      <td>
-                        <div className="matrix-design-cell">
-                          <strong className="mono">{row.designId}</strong>
-                          <span className="muted">
-                            {Number.isFinite(Number(row.score)) ? Number(row.score).toFixed(4) : row.title}
-                          </span>
-                        </div>
-                      </td>
-                      {row.results.map((result) => (
-                        <td key={`${row.designId}-${result.ruleId}`}>
-                          <span className={`matrix-status ${result.pass ? "pass" : "fail"}`}>
-                            <i
-                              className={`fa-solid ${result.pass ? "fa-check" : "fa-xmark"}`}
-                              aria-hidden="true"
-                            />
-                          </span>
-                        </td>
-                      ))}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
-        ) : (
-          <p className="muted empty-state">
-            Import the bundle first, then use Evaluate Rules with Goldbar plus categories to
-            generate a real Knox rule matrix.
-          </p>
-        )}
-      </section>
     </div>
   );
 }
