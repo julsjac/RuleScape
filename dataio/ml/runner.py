@@ -1,4 +1,6 @@
 import requests
+import json
+import pandas as pd
 
 BASE_URL = "http://127.0.0.1:8080"
 
@@ -24,6 +26,30 @@ def getRuleEvaluation(eval_name):
     )
     response.raise_for_status()
     return processRuleEval(response)
+
+def processRuleEval(response):
+    json_data = json.loads(response.text)
+
+    purity_metrics_df = pd.DataFrame(json_data["evaluationResults"]).T
+
+    designToRule_df = pd.DataFrame(
+        json_data["designToRule"],
+        index=json_data["designToRule"]["designIDs"]
+    )
+
+    cols = designToRule_df.columns.to_list()
+    cols.remove("labels")
+    cols.remove("scores")
+    cols.remove("designIDs")
+
+    cols = ["labels", "scores"] + cols
+    designToRule_df = designToRule_df[cols]
+
+    return (
+        purity_metrics_df.sort_values("impact"),
+        designToRule_df.sort_values("scores"),
+        json_data
+    )
 
 def run_full_ml(payload):
     eval_name = payload.get("evalName")
