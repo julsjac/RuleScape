@@ -21,7 +21,8 @@ def run_full_ml(payload):
 
     results, features = run_ml_pipeline(
         design_df,
-        params,
+        train_split,
+        top_n_features,
         selected_models
     )
 
