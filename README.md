@@ -61,6 +61,7 @@ brew install graphviz yosys
 ```
 
 ## Launch apps
+Each of these services must be launched in their own terminal.
 
 To launch the frontend, run:
 ```bash
