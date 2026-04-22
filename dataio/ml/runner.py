@@ -2,12 +2,21 @@ import requests
 
 KNOX_URL = "http://127.0.0.1:8080"
 
-def rule_evaluate(payload: dict):
+import requests
+
+def rule_evaluate(eval_name, group_id, rule_group_id):
+    payload = {
+        "evalName": eval_name,
+        "groupId": group_id,
+        "ruleGroupId": rule_group_id,
+    }
+
     response = requests.post(
-        f"{KNOX_URL}/evaluate",
+        "http://127.0.0.1:8080/rule/evaluate",
         json=payload,
-        timeout=60
+        timeout=60,
     )
+
     response.raise_for_status()
     return response.json()
     
