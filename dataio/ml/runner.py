@@ -20,7 +20,7 @@ from dataio.ml.pipeline import run_ml_pipeline
 
 def getRuleEvaluation(eval_name):
     response = requests.get(
-        url + "/rule/getEvaluation?evaluationName=" + eval_name
+        BASE_URL + "/rule/getEvaluation?evaluationName=" + eval_name
     )
     response.raise_for_status()
     return processRuleEval(response)
