@@ -28,7 +28,7 @@ def getRuleEvaluation(eval_name):
     return processRuleEval(response)
 
 def processRuleEval(response):
-    json_data = json.loads(response.text)
+    json_data = response.json()
 
     purity_metrics_df = pd.DataFrame(json_data["evaluationResults"]).T
 
@@ -45,11 +45,11 @@ def processRuleEval(response):
     cols = ["labels", "scores"] + cols
     designToRule_df = designToRule_df[cols]
 
-    return (
-        purity_metrics_df.sort_values("impact"),
-        designToRule_df.sort_values("scores"),
-        json_data
-    )
+    return {
+        "evaluationResults": purity_metrics_df.sort_values("impact").to_dict(orient="records"),
+        "designToRule": designToRule_df.sort_values("scores").to_dict(orient="records"),
+        "raw": json_data
+    }
 
 def run_full_ml(payload):
     eval_name = payload.get("evalName")
@@ -61,8 +61,9 @@ def run_full_ml(payload):
     top_n_features = payload.get("top_n_features")
     threshold = payload.get("threshold")
     
+    eval_result = getRuleEvaluation(eval_name)
 
-    _, design_df, _ = getRuleEvaluation(eval_name)
+    design_df = pd.DataFrame(eval_result["designToRule"])
 
     results, features = run_ml_pipeline(
         design_df,
