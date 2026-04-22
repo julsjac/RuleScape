@@ -8,11 +8,11 @@ def run_ml_pipeline(design_df, train_split, top_n_features, selected_models):
     X, y_labels, y_scores, feature_names = build_xy(design_df)
 
     X_train_b, X_test_b, y_train_b, y_test_b = train_test_split(
-        X, y_labels, test_size=(1-train_split), random_state=42
+        X, y_labels, test_size=(1 - train_split), random_state=42
     )
 
     X_train_r, X_test_r, y_train_r, y_test_r = train_test_split(
-        X, y_scores, test_size=(1-train_split), random_state=42
+        X, y_scores, test_size=(1 - train_split), random_state=42
     )
 
     results = {}
@@ -25,7 +25,6 @@ def run_ml_pipeline(design_df, train_split, top_n_features, selected_models):
     if "rf" in selected_models:
         results["rf"] = random_forest.train(
             X_train_b, y_train_b, X_test_b, y_test_b, top_n_features, feature_names,
-            max_depth=params.get("rf_depth", 3)
         )
 
     if "dt_bin" in selected_models:
@@ -38,4 +37,4 @@ def run_ml_pipeline(design_df, train_split, top_n_features, selected_models):
             X_train_r, y_train_r, X_test_r, y_test_r, top_n_features, feature_names,
         )
 
-    return results
+    return results, feature_names

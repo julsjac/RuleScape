@@ -589,7 +589,10 @@ export default function App() {
     });
 
     const payload = {
-      train_split: resolvedParams.trainSplit,
+            evalName: knoxRunState.result?.evaluation?.evaluationName || "",
+            groupId: knoxRunState.result?.import?.designGroupId || "",
+            ruleGroupId: knoxRunParams.ruleSpaceId || "",
+            train_split: resolvedParams.trainSplit,
       top_n_features: resolvedParams.topNFeatures,
       threshold: resolvedParams.threshold,
       models: resolvedParams.models,
@@ -815,6 +818,7 @@ export default function App() {
               onMlParamChange: handleMlParamChange,
               onRunML: handleRunML,
               mlRunState,
+                        knoxRunState,
             }
           : {};
 
