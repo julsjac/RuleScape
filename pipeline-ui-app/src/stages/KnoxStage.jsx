@@ -26,8 +26,8 @@ export const knoxRuleSpecs = [
   {
     id: "goldbar",
     title: "Goldbar",
-    note: "rule expression to import into Knox",
-    accept: ".txt,.goldbar,.gb",
+    note: "rule expression to import into Knox, or a CSV with a goldbar column",
+    accept: ".txt,.goldbar,.gb,.csv",
     placeholder: "Write or import the Goldbar rule specification",
   },
   {
@@ -111,6 +111,67 @@ function matchesAcceptedExtension(fileName, accept) {
     .map((item) => item.trim().toLowerCase())
     .filter(Boolean);
   return accepted.some((suffix) => fileName.toLowerCase().endsWith(suffix));
+}
+
+function parseCsvRow(line = "") {
+  const cells = [];
+  let current = "";
+  let inQuotes = false;
+
+  for (let index = 0; index < line.length; index += 1) {
+    const char = line[index];
+
+    if (char === '"') {
+      if (inQuotes && line[index + 1] === '"') {
+        current += '"';
+        index += 1;
+      } else {
+        inQuotes = !inQuotes;
+      }
+      continue;
+    }
+
+    if (char === "," && !inQuotes) {
+      cells.push(current.trim());
+      current = "";
+      continue;
+    }
+
+    current += char;
+  }
+
+  cells.push(current.trim());
+  return cells;
+}
+
+function extractGoldbarExpression(text = "") {
+  const lines = text
+    .replace(/^\uFEFF/, "")
+    .split(/\r?\n/)
+    .filter((line) => line.trim() !== "");
+
+  if (lines.length < 2) {
+    return "";
+  }
+
+  const headers = parseCsvRow(lines[0]).map((header) => header.trim());
+  const goldbarIndex = headers.findIndex((header) => header.toLowerCase() === "goldbar");
+
+  if (goldbarIndex < 0) {
+    return "";
+  }
+
+  const values = lines
+    .slice(1)
+    .map((line) => parseCsvRow(line)[goldbarIndex] || "")
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  if (values.length === 0) {
+    return "";
+  }
+
+  return values.sort((left, right) => right.length - left.length)[0];
 }
 
 function parseCsv(text = "") {
@@ -526,7 +587,13 @@ export function BridgeStage({
 
     const reader = new FileReader();
     reader.onload = () => {
-      onKnoxRuleInputChange(fileSpec.id, String(reader.result ?? ""));
+      const importedText = String(reader.result ?? "");
+      const normalizedText =
+        fileSpec.id === "goldbar" && file.name.toLowerCase().endsWith(".csv")
+          ? extractGoldbarExpression(importedText) || importedText
+          : importedText;
+
+      onKnoxRuleInputChange(fileSpec.id, normalizedText);
       onKnoxRuleNameChange(fileSpec.id, file.name);
       setOpenRuleName(fileSpec.title);
     };

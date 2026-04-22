@@ -380,8 +380,11 @@ export default function App() {
     String(knoxBundleInputs.designs || "").trim() &&
       String(knoxBundleInputs.partLibrary || "").trim()
   );
+  const uploadedKnoxWeightReady = Boolean(String(knoxBundleInputs.weight || "").trim());
   const knoxBundleReady =
     knoxBundleSource === "generated" ? generatedKnoxBundleReady : uploadedKnoxBundleReady;
+  const knoxEvaluationScoresReady =
+    knoxBundleSource === "generated" ? generatedKnoxBundleReady : uploadedKnoxWeightReady;
   const hasKnoxRules =
     Boolean(String(knoxRuleInputs.goldbar || "").trim()) &&
     Boolean(String(knoxRuleInputs.categories || "").trim());
@@ -397,6 +400,7 @@ export default function App() {
     knoxServiceStatus === "online" &&
     hasImportedKnoxBundle &&
     importedKnoxGroupMatchesCurrent &&
+    knoxEvaluationScoresReady &&
     hasKnoxRules &&
     !isKnoxRunning;
 
@@ -821,6 +825,8 @@ export default function App() {
     ? "Import the bundle first. Evaluate Rules unlocks after a successful import."
     : !importedKnoxGroupMatchesCurrent
       ? "Knox import settings changed after the last import. Re-import before evaluating rules."
+      : knoxBundleSource === "uploaded" && !uploadedKnoxWeightReady
+        ? "Uploaded bundle evaluation requires weight.csv so Knox has real design scores."
       : !hasKnoxRules
         ? "Add both Goldbar and categories to enable Evaluate Rules."
         : "Evaluate Rules will run Knox rule evaluation on the imported design group.";
