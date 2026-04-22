@@ -60,8 +60,11 @@ sudo apt install graphviz yosys
 brew install graphviz yosys
 ```
 
+## Launch apps
+
 To launch the frontend, run:
 ```bash
+cd /Users/trieutran/RuleScape/pipeline-ui-app
 npm run dev
 ```
 
@@ -71,3 +74,11 @@ cd /Users/trieutran/RuleScape/cello
 python3.10 cello_knox/pipeline_server.py
 ```
 Then open: `http://127.0.0.1:5173`
+
+
+To launch Knox:
+```bash
+cd /Users/trieutran/RuleScape/knox
+docker-compose up --build
+```
+
