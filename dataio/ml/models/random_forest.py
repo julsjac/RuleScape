@@ -2,7 +2,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 
-def train(X_train, y_train, X_test, y_test, rules_N, max_depth=3):
+def train(X_train, y_train, X_test, y_test, rules_N, feature_names, max_depth=3):
     model = RandomForestClassifier(max_depth=max_depth, random_state=0)
     model.fit(X_train, y_train)
 
