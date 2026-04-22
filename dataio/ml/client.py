@@ -5,7 +5,7 @@ import pandas as pd
 BASE_URL = "http://localhost:8080"
 
 
-def rule_evaluate(eval_name, group_id, rule_group_id, labeling_method="sign"):
+def rule_evaluate(eval_name, group_id, rule_group_id, labeling_method="median"):
     response = requests.post(
         f"{BASE_URL}/rule/evaluate",
         params={
