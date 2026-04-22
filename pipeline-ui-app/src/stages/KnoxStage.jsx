@@ -1,3 +1,4 @@
+import Editor from "@monaco-editor/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 export const knoxBundleSpecs = [
@@ -53,6 +54,27 @@ const rolePalette = [
   { bg: "rgba(210, 182, 255, 0.14)", border: "rgba(210, 182, 255, 0.26)", text: "#d2b6ff" },
   { bg: "rgba(255, 159, 159, 0.14)", border: "rgba(255, 159, 159, 0.26)", text: "#ffb199" },
 ];
+
+const rawJsonEditorOptions = {
+  automaticLayout: true,
+  readOnly: true,
+  domReadOnly: true,
+  fontFamily: "IBM Plex Mono, monospace",
+  fontSize: 13,
+  lineHeight: 20,
+  minimap: { enabled: false },
+  padding: { top: 16, bottom: 16 },
+  scrollBeyondLastLine: false,
+  tabSize: 2,
+  wordWrap: "off",
+  lineNumbers: "on",
+  lineNumbersMinChars: 3,
+  overviewRulerBorder: false,
+  hideCursorInOverviewRuler: true,
+  folding: true,
+  renderLineHighlight: "line",
+  renderLineHighlightOnlyWhenFocus: true,
+};
 
 export function createEmptyKnoxBundleInputs() {
   return {
@@ -918,7 +940,7 @@ export function BridgeStage({
           ) : (
             <>
               <p className="muted preview-meta">{rawKnoxOutputLabel}</p>
-              <textarea className="code-box preview-box raw-json-box" value={rawKnoxOutputText} readOnly />
+              <RawJsonViewer value={rawKnoxOutputText} />
             </>
           )}
         </section>
@@ -1155,6 +1177,29 @@ export function BridgeStage({
           </p>
         )}
       </section>
+    </div>
+  );
+}
+
+function RawJsonViewer({ value }) {
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleMount = (editor) => {
+    editor.onDidFocusEditorWidget(() => setIsFocused(true));
+    editor.onDidBlurEditorWidget(() => setIsFocused(false));
+  };
+
+  return (
+    <div className={`editor-shell raw-json-box${isFocused ? " focused" : ""}`}>
+      <Editor
+        height="320px"
+        language="json"
+        onMount={handleMount}
+        options={rawJsonEditorOptions}
+        path="knox-raw-output.json"
+        theme="vs-dark"
+        value={value || "{}"}
+      />
     </div>
   );
 }
