@@ -3,7 +3,7 @@ import rulescapeLogoFull from "./assets/rulescape_logo.png";
 import rulescapeLogoCrop from "./assets/rulescape_logo_crop.png";
 import {
   BridgeStage,
-  createEmptyKnoxBundleInputs,
+  createEmptyKnoxBundleInputs,h
   createEmptyKnoxBundleNames,
   createEmptyKnoxRuleInputs,
   createEmptyKnoxRuleNames,
@@ -589,7 +589,10 @@ export default function App() {
     });
 
     const payload = {
-      train_split: resolvedParams.trainSplit,
+            evalName: knoxRunState.result?.evaluation?.evaluationName || "",
+            groupId: knoxRunState.result?.import?.designGroupId || "",
+            ruleGroupId: knoxRunParams.ruleSpaceId || "",
+            train_split: resolvedParams.trainSplit,
       top_n_features: resolvedParams.topNFeatures,
       threshold: resolvedParams.threshold,
       models: resolvedParams.models,
