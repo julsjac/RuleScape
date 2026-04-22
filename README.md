@@ -82,3 +82,8 @@ cd /Users/trieutran/RuleScape/knox
 docker-compose up --build
 ```
 
+---
+
+To use a simple example, examples files are located at:
+- RuleScape/examples/cello_input - These are for the first stage, contains a .v, UCF, input/output.json
+- RuleScape/examples/knox_input - This folder contains a simple goldbar rule, and a translation layer `catergories.json`
