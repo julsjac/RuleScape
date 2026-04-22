@@ -3,7 +3,7 @@ import rulescapeLogoFull from "./assets/rulescape_logo.png";
 import rulescapeLogoCrop from "./assets/rulescape_logo_crop.png";
 import {
   BridgeStage,
-  createEmptyKnoxBundleInputs,h
+  createEmptyKnoxBundleInputs,
   createEmptyKnoxBundleNames,
   createEmptyKnoxRuleInputs,
   createEmptyKnoxRuleNames,
