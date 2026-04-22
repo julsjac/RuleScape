@@ -4,14 +4,31 @@ import numpy as np
 import pandas as pd
 
 def to_json_safe(obj):
+    # pandas DataFrame
     if isinstance(obj, pd.DataFrame):
         return obj.to_dict(orient="records")
+
+    # pandas Series
     if isinstance(obj, pd.Series):
         return obj.to_dict()
+
+    # numpy scalar
     if isinstance(obj, np.generic):
         return obj.item()
+
+    # numpy array
     if isinstance(obj, np.ndarray):
         return obj.tolist()
+
+    # dict → recursively clean values
+    if isinstance(obj, dict):
+        return {str(k): to_json_safe(v) for k, v in obj.items()}
+
+    # list / tuple → recursively clean items
+    if isinstance(obj, (list, tuple)):
+        return [to_json_safe(v) for v in obj]
+
+    # fallback
     return obj
 
 BASE_URL = "http://127.0.0.1:8080"
