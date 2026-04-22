@@ -89,7 +89,7 @@ def run_full_ml(payload):
     train_split = payload.get("train_split")
     top_n_features = payload.get("top_n_features")
     threshold = payload.get("threshold")
-    
+
     eval_result = getRuleEvaluation(eval_name)
 
     design_df = pd.DataFrame(eval_result["designToRule"])
@@ -101,7 +101,10 @@ def run_full_ml(payload):
         selected_models
     )
 
+    results_safe = to_json_safe(results)
+    features_safe = to_json_safe(features)
+
     return {
-        "results": to_json_safe(results),
-        "features": to_json_safe(features)
+        "results": json.loads(json.dumps(results_safe)),
+        "features": json.loads(json.dumps(features_safe))
     }
