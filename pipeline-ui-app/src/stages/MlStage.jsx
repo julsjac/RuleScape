@@ -27,10 +27,14 @@ const modelChoices = [
   },
   ];
 
-export function MlStage({ mlParams, onMlParamChange, onRunML, mlRunState }) {
+export function MlStage({ mlParams, onMlParamChange, onRunML, mlRunState, knoxRunState }) {
     const [selectedModels, setSelectedModels] = useState(new Set());
 
   if (!mlParams || !mlRunState) return null;
+
+  const evaluationName = knoxRunState?.result?.evaluation?.evaluationName || "";
+    const designGroupId = knoxRunState?.result?.import?.designGroupId || "";
+    const hasKnoxContext = Boolean(evaluationName || designGroupId);
 
   function toggleModel(id) {
         setSelectedModels((prev) => {
@@ -49,7 +53,6 @@ export function MlStage({ mlParams, onMlParamChange, onRunML, mlRunState }) {
   }
 
   const isRunning = mlRunState.phase === "running" || mlRunState.phase === "initializing";
-    const hasKnoxContext = Boolean(mlParams.evaluationName || mlParams.designGroupId);
 
   return (
         <div className="stage-grid">
@@ -60,16 +63,16 @@ export function MlStage({ mlParams, onMlParamChange, onRunML, mlRunState }) {
                                         The ML run will re-evaluate designs using the Knox evaluation below.
                             </p>p>
                             <div className="mini-grid">
-                              {mlParams.evaluationName && (
+                              {evaluationName && (
                                   <div className="mini-card">
                                                   <span className="mini-card-label">Evaluation name</span>span>
-                                                  <strong className="mini-card-value mono">{mlParams.evaluationName}</strong>strong>
+                                                  <strong className="mini-card-value mono">{evaluationName}</strong>strong>
                                   </div>div>
                                         )}
-                              {mlParams.designGroupId && (
+                              {designGroupId && (
                                   <div className="mini-card">
                                                   <span className="mini-card-label">Design group ID</span>span>
-                                                  <strong className="mini-card-value mono">{mlParams.designGroupId}</strong>strong>
+                                                  <strong className="mini-card-value mono">{designGroupId}</strong>strong>
                                   </div>div>
                                         )}
                             </div>div>
@@ -162,14 +165,14 @@ export function MlStage({ mlParams, onMlParamChange, onRunML, mlRunState }) {
                                                       {res.accuracy != null
                                                                             ? `Accuracy: ${(res.accuracy * 100).toFixed(1)}%`
                                                                             : res.r2 != null
-                                                                            ? `R²: ${res.r2.toFixed(4)}`
+                                                                            ? `R\u00b2: ${res.r2.toFixed(4)}`
                                                                             : "Done"}
                                                     </strong>strong>
                                       {res.top_n_rules && res.top_n_rules.length > 0 && (
                                                         <ul className="top-rules-list">
                                                           {res.top_n_rules.map((rule, i) => (
                                                                                 <li key={i} className="mono">
-                                                                                  {rule.feature} — {Number(rule.importance).toFixed(4)}
+                                                                                  {rule.feature} \u2014 {Number(rule.importance).toFixed(4)}
                                                                                   </li>li>
                                                                               ))}
                                                         </ul>ul>
