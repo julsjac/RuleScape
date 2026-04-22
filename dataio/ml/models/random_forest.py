@@ -13,7 +13,7 @@ def train(X_train, y_train, X_test, y_test, rules_N, feature_names, max_depth=3)
     importances = pd.Series(model.feature_importances_, index=feature_names)
 
     # Sort and get the top N
-    top_features = importances.sort_values(ascending=False).head(rules_N)
+    top_features = importances.sort_values(ascending=False).head(rules_N).reset_index()
 
     top_features.columns = ["feature", "importance"]
 
