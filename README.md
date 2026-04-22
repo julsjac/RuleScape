@@ -65,13 +65,13 @@ Each of these services must be launched in their own terminal.
 
 To launch the frontend, run:
 ```bash
-cd /Users/trieutran/RuleScape/pipeline-ui-app
+cd RuleScape/pipeline-ui-app
 npm run dev
 ```
 
 Then, to launch Cello:
 ```bash
-cd /Users/trieutran/RuleScape/cello
+cd RuleScape/cello
 python cello_knox/pipeline_server.py
 ```
 Then open: `http://127.0.0.1:5173`
@@ -79,7 +79,7 @@ Then open: `http://127.0.0.1:5173`
 
 To launch Knox:
 ```bash
-cd /Users/trieutran/RuleScape/knox
+cd RuleScape/knox
 docker-compose up --build
 ```
 
