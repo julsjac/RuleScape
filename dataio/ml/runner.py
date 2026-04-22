@@ -16,8 +16,10 @@ def rule_evaluate(eval_name, group_id, rule_group_id):
         json=payload,
         timeout=60,
     )
-
+    print(response.status_code)
+    print(response.text)   # THIS IS CRITICAL
     response.raise_for_status()
+
     return response.json()
     
 from dataio.ml.pipeline import run_ml_pipeline
