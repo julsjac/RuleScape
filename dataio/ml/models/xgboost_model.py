@@ -2,7 +2,7 @@ import xgboost as xgb
 from sklearn.metrics import accuracy_score
 
 
-def train(X_train, y_train, X_test, y_test):
+def train(X_train, y_train, X_test, y_test, rules_N):
     model = xgb.XGBClassifier(
         objective="binary:logistic",
         random_state=42,
