@@ -4,15 +4,15 @@ from dataio.ml.features import build_xy
 from dataio.ml.models import xgboost_model, random_forest, decision_tree
 
 
-def run_ml_pipeline(design_df, params, selected_models):
+def run_ml_pipeline(design_df, train_split, threshold, top_n_features, selected_models):
     X, y_labels, y_scores, feature_names = build_xy(design_df)
 
     X_train_b, X_test_b, y_train_b, y_test_b = train_test_split(
-        X, y_labels, test_size=0.3, random_state=42
+        X, y_labels, test_size=(1-train_split), random_state=42
     )
 
     X_train_r, X_test_r, y_train_r, y_test_r = train_test_split(
-        X, y_scores, test_size=0.3, random_state=42
+        X, y_scores, test_size=(1-train_split), random_state=42
     )
 
     results = {}
@@ -28,8 +28,8 @@ def run_ml_pipeline(design_df, params, selected_models):
             max_depth=params.get("rf_depth", 3)
         )
 
-    if "dt_class" in selected_models:
-        results["dt_class"] = decision_tree.train_classifier(
+    if "dt_bin" in selected_models:
+        results["dt_bin"] = decision_tree.train_classifier(
             X_train_b, y_train_b, X_test_b, y_test_b
         )
 
