@@ -18,6 +18,12 @@ def rule_evaluate(eval_name, group_id, rule_group_id, labeling_method="sign"):
     
 from dataio.ml.pipeline import run_ml_pipeline
 
+def getRuleEvaluation(eval_name):
+    response = requests.get(
+        url + "/rule/getEvaluation?evaluationName=" + eval_name
+    )
+    response.raise_for_status()
+    return processRuleEval(response)
 
 def run_full_ml(payload):
     eval_name = payload.get("evalName")
@@ -30,11 +36,7 @@ def run_full_ml(payload):
     threshold = payload.get("threshold")
     
 
-    _, design_df, _ = rule_evaluate(
-        eval_name,
-        group_id,
-        rule_group_id
-    )
+    _, design_df, _ = getRuleEvaluation(eval_name)
 
     results, features = run_ml_pipeline(
         design_df,
