@@ -1,4 +1,4 @@
-from dataio.knox.client import rule_evaluate
+from knox.client import rule_evaluate
 from dataio.ml.pipeline import run_ml_pipeline
 
 
