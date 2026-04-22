@@ -26,7 +26,7 @@ RULE_NAMES = ["rule_A", "rule_B", "rule_C", "rule_D",
 
 rule_data = np.random.randint(0, 2, size=(N, len(RULE_NAMES)))
 scores = np.random.uniform(-1.0, 1.0, size=N)
-labels = np.where(scores >= 0, 1, -1).astype(int)
+labels = np.where(scores >= 0, 1, 0).astype(int)
 
 design_df = pd.DataFrame(rule_data, columns=RULE_NAMES)
 design_df.insert(0, "scores", scores)
