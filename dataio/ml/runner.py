@@ -1,6 +1,18 @@
 import requests
 import json
+import numpy as np
 import pandas as pd
+
+def to_json_safe(obj):
+    if isinstance(obj, pd.DataFrame):
+        return obj.to_dict(orient="records")
+    if isinstance(obj, pd.Series):
+        return obj.to_dict()
+    if isinstance(obj, np.generic):
+        return obj.item()
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+    return obj
 
 BASE_URL = "http://127.0.0.1:8080"
 
@@ -73,6 +85,6 @@ def run_full_ml(payload):
     )
 
     return {
-        "results": results,
-        "features": features
+        "results": to_json_safe(results),
+        "features": to_json_safe(features)
     }
