@@ -315,7 +315,7 @@ export default function App() {
 
   const [celloRunState, setCelloRunState] = useState(createIdleRunState);
   const [knoxRunState, setKnoxRunState] = useState(createIdleRunState);
-  const [mlRunState, setMlRunState] = useState(createIdleRunState);
+  const [mlRunState,            knoxRunState, setMlRunState] = useState(createIdleRunState);
   const [mlParams, setMlParams] = useState({
     trainSplit: 70,
     topNFeatures: 10,
@@ -818,6 +818,7 @@ export default function App() {
               onMlParamChange: handleMlParamChange,
               onRunML: handleRunML,
               mlRunState,
+                        knoxRunState,
             }
           : {};
 
