@@ -41,54 +41,69 @@ cd RuleScape/pipeline-ui-app
 ./scripts/bootstrap.sh
 ```
 
-If your system is Mac/Linux, the installer now sets up:
+On macOS and Linux, `bootstrap.sh` installs:
 
 - Node.js and frontend `npm` dependencies
 - Cello Python dependencies from `cello/requirements.txt`
-- Cello system dependencies: `yosys`, `graphviz` (`dot`), and `java`
+- ML Python dependencies from `dataio/ml/requirements.txt`
+- system dependencies used by the current stack: `yosys`, `graphviz` (`dot`), `Java 17+`, and `Maven`
 
 On macOS the script uses Homebrew. On Linux it uses Homebrew when available, otherwise `apt-get`.
 
-For Windows, additionally users must:
-- install node.js
-- In the git bash:
-```bash
-cd RuleScape/pipeline-ui-app
-npm install
-```
-- install Docker
+The bootstrap script does **not** install:
 
-For the ML scripts, you will also need to install the relevant Python packages.
-- First, ensure you have Python 3.10+ installed
-```bash
-cd RuleScape
-pip install -r dataio/ml/requirements.txt
-```
+- Python itself
+- Docker
+- Neo4j for non-Docker Knox runs
+
+So before running the script, make sure you already have:
+
+- Python 3.10+
+- Docker if you plan to run Knox with `docker-compose`
+
+For Windows, the bootstrap script is not the supported setup path. Install the required dependencies manually.
 
 ## Launch apps
 Each of these services must be launched in their own terminal.
 
-To launch the frontend, run:
+Frontend:
 ```bash
 cd RuleScape/pipeline-ui-app
 npm run dev
 ```
 
-Then, to launch Cello:
+Cello pipeline server:
 ```bash
 cd RuleScape/cello
 python3.10 cello_knox/pipeline_server.py
 ```
+
+ML server:
+```bash
+cd RuleScape
+python3.10 -m dataio.ml.ml_server
+```
+
 Then open: `http://127.0.0.1:5173`
 
-If `python3.10` is not installed on your machine, use the Python 3.10+ interpreter that `./scripts/install_frontend.sh` selected and printed at the end of setup.
+If `python3.10` is not installed on your machine, use the Python 3.10+ interpreter that `./scripts/bootstrap.sh` selected and printed at the end of setup.
 
+Knox can be launched in one of two ways.
 
-To launch Knox:
+Using Docker:
 ```bash
 cd RuleScape/knox
 docker-compose up --build
 ```
+
+Using a local source build:
+```bash
+cd RuleScape/knox
+mvn clean install
+mvn spring-boot:run
+```
+
+The local Knox source build still requires a running Neo4j instance.
 
 ---
 
