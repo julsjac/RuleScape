@@ -29,11 +29,15 @@ def train(X_train, y_train, X_test, y_test, rules_N, feature_names):
         ascending=False
     )
 
-    top_n = importance_df.head(rules_N)
+    top_features = importance_df.head(rules_N).reset_index()
+    top_features.columns = ["feature", "importance"]
 
     # Returns model, its accuracy, and the top rules dataframe
     return {
-        "model": model,
-        "accuracy": accuracy_score(y_test, preds),
-        "top_n_rules": top_n.to_dict(orient="records"),
+        "accuracy": float(accuracy_score(y_test, preds)),
+        "top_n_rules": top_features.to_dict(orient="records"),
+        "model_summary": {
+            "type": "XGBoost",
+            "feature_count": len(feature_names)
+        }
     }
