@@ -48,7 +48,7 @@ cd RuleScape/pipeline-ui-app
 ./scripts/install_frontend.sh
 ```
 
-The installer now sets up:
+If your system is Mac/Linux, the installer now sets up:
 
 - Node.js and frontend `npm` dependencies
 - Cello Python dependencies from `cello/requirements.txt`
@@ -56,7 +56,17 @@ The installer now sets up:
 
 On macOS the script uses Homebrew. On Linux it uses Homebrew when available, otherwise `apt-get`.
 
-For the ML scripts, you will also need to install the relevant Python packages:
+For Windows, additionally users must:
+- install node.js
+- In the git bash:
+```bash
+cd RuleScape/pipeline-ui-app
+npm install
+```
+- install Docker
+
+For the ML scripts, you will also need to install the relevant Python packages.
+- First, ensure you have Python 3.10+ installed
 ```bash
 cd RuleScape
 pip install -r dataio/ml/requirements.txt
