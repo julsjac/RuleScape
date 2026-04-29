@@ -28,10 +28,6 @@ RuleScape aims to streamline circuit design by integrating Knox and Cello and ce
 
 Through the modernized UI, RuleScape guides users through design consideration decisions and allows for custom libraries. 
 
-## <strong>Under the Hood</strong>
-
-RuleScape's adapter layer drives the integration of Knox and Cello, allowing the two to communicate quickly and effectively and removing the friction between design development and expression modeling
-
 ## What's here
 
 - `knox/` - Git submodule for storing, querying, and visualizing genetic design spaces.
