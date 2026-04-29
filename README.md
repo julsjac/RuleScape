@@ -56,10 +56,10 @@ The installer now sets up:
 
 On macOS the script uses Homebrew. On Linux it uses Homebrew when available, otherwise `apt-get`.
 
-For the ML, you will also need to download the dataio/ml/requirements.txt. To install, navigate to your terminal and input:
+For the ML scripts, you will also need to install the relevant Python packages:
 ```bash
 cd RuleScape
-pip install requirements.txt
+pip install -r dataio/ml/requirements.txt
 ```
 
 ## Launch apps
