@@ -9,7 +9,11 @@
 
 ___
 
-RuleScape is a comprehensive integration pipeline for Knox and Cello that helps manage combinitorial explosion through rule rankings, powered by various machine learning algorithms. Our rule-ranking system is what sets it apart from other design workflows. Through RuleScape's host of Machine Learning models trained on genetic designs and their rules, designs are ranked and high-throughput rules are put center stage to help guide designs. 
+RuleScape is an integrated pipeline that:
+- Connects Cello and Knox into a single workflow
+- Evaluates genetic designs against structural rules
+- Uses machine learning to rank rules by their influence on design performance
+- Helps guide design decisions by surfacing the highest-impact rules
 
 ## <strong>Seamless UI</strong>
 
