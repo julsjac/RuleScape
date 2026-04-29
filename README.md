@@ -38,7 +38,7 @@ This repo depends on Git submodules for the main application code. Clone it with
 ```bash
 git clone --recurse-submodules https://github.com/julsjac/RuleScape.git
 cd RuleScape/pipeline-ui-app
-./scripts/install_frontend.sh
+./scripts/bootstrap.sh
 ```
 
 If your system is Mac/Linux, the installer now sets up:
