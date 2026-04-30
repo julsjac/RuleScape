@@ -5,6 +5,8 @@ from sklearn.metrics import accuracy_score
 
 def train(X_train, y_train, X_test, y_test, rules_N, feature_names):
     model = xgb.XGBClassifier(
+        max_depth=10,
+        learning_rate=0.1,
         objective="binary:logistic",
         random_state=42,
         eval_metric="auc"
