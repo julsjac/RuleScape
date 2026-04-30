@@ -4,7 +4,7 @@ from sklearn.metrics import accuracy_score, r2_score
 
 
 def train_classifier(X_train, y_train, X_test, y_test, rules_N, feature_names):
-    max_depth = 8
+    max_depth = 12
     model = tree.DecisionTreeClassifier(max_depth=max_depth)
     model.fit(X_train, y_train)
 
@@ -30,7 +30,7 @@ def train_classifier(X_train, y_train, X_test, y_test, rules_N, feature_names):
 
 
 def train_regressor(X_train, y_train, X_test, y_test, rules_N, feature_names):
-    max_depth = 8
+    max_depth = 12
     model = tree.DecisionTreeRegressor(max_depth=max_depth)
     model.fit(X_train, y_train)
 
