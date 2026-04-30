@@ -27,9 +27,15 @@ Through the modernized UI, RuleScape guides users through design consideration d
 
 ## What's here
 
-- `knox/` - Git submodule for storing, querying, and visualizing genetic design spaces.
-- `cello/` - Git submodule for compiling logic designs into genetic circuit implementations.
-- `dataio/` - Local scripts and datasets for preparing inputs, generating UCF files, and supporting analysis.
+- `code/knox/` - Git submodule for storing, querying, and visualizing genetic design spaces. (requires Neo4j)
+- `code/cello/` - Git submodule for compiling logic designs into genetic circuit implementations.
+- `code/dataio/` - Local scripts and datasets for preparing inputs, generating UCF files, and supporting analysis.
+- `code/pipeline-ui-app/` – React frontend UI
+
+Other directories:
+- `assets/` – images and demo files
+- `examples/` – example inputs/outputs
+- `RuleScape Final Project Report.pdf` – final report
 
 ## <strong> Installation </strong>
 
@@ -37,7 +43,7 @@ This repo depends on Git submodules for the main application code. Clone it with
 
 ```bash
 git clone --recurse-submodules https://github.com/julsjac/RuleScape.git
-cd RuleScape/pipeline-ui-app
+cd code/pipeline-ui-app
 ./scripts/bootstrap.sh
 ```
 
@@ -61,6 +67,7 @@ So before running the script, make sure you already have:
 - Python 3.10+
 - Docker if you plan to run Knox with `docker-compose`
 
+
 For Windows, the bootstrap script is not the supported setup path. Install the required dependencies manually.
 
 ## Launch apps
@@ -68,19 +75,19 @@ Each of these services must be launched in their own terminal.
 
 Frontend:
 ```bash
-cd RuleScape/pipeline-ui-app
+cd code/pipeline-ui-app
 npm run dev
 ```
 
 Cello pipeline server:
 ```bash
-cd RuleScape/cello
+cd code/cello
 python3.10 cello_knox/pipeline_server.py
 ```
 
 ML server:
 ```bash
-cd RuleScape
+cd code
 python3.10 -m dataio.ml.ml_server
 ```
 
@@ -92,13 +99,14 @@ Knox can be launched in one of two ways.
 
 Using Docker:
 ```bash
-cd RuleScape/knox
+cd code/knox
 docker-compose up --build
 ```
 
 Using a local source build:
 ```bash
-cd RuleScape/knox
+(open Neo4j)
+cd code/knox
 mvn clean install
 mvn spring-boot:run
 ```
