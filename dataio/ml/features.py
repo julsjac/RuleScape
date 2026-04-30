@@ -1,3 +1,5 @@
+# Extracts the feature matrix and target arrays from the Knox design-to-rule DataFrame.
+# Called by pipeline.py before train/test splitting and model training.
 import numpy as np
 
 def build_xy(design_df):
