@@ -110,8 +110,6 @@ def run_full_ml(payload):
     selected_models = payload.get("models", [])
     train_split = payload.get("train_split")
     top_n_features = payload.get("top_n_features")
-    threshold = payload.get("threshold")
-
     # Fetch and format the Knox evaluation data
     eval_result = getRuleEvaluation(eval_name)
 

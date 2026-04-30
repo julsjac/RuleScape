@@ -23,7 +23,7 @@ class MLRunRequest(BaseModel):
     models: List[str]       # Which models to run: "xgb", "rf", "dt_bin", "dt_reg"
     train_split: float      # Train/test split percentage (e.g. 80 = 80% train)
     top_n_features: int     # Number of top features to report per model
-    threshold: float        # Score threshold for binary labeling (passed through to runner)
+    threshold: float | None = None  # Legacy optional field; ignored by the current runner
 
 
 @router.post("/run-ml")
