@@ -191,21 +191,6 @@ export function MlStage({ mlParams, onMlParamChange, onRunML, mlRunState, knoxRu
               onChange={(event) => onMlParamChange("topNFeatures", Number(event.target.value))}
             />
           </div>
-          <div className="config-row">
-            <label className="config-label" htmlFor="ml-threshold">
-              Threshold
-            </label>
-            <input
-              id="ml-threshold"
-              className="config-control"
-              type="number"
-              min="0"
-              max="1"
-              step="0.01"
-              value={mlParams.threshold ?? 0.5}
-              onChange={(event) => onMlParamChange("threshold", Number(event.target.value))}
-            />
-          </div>
         </div>
       </section>
 

@@ -1,0 +1,182 @@
+{
+  "cds": {
+    "design_col_0": [
+      "design_col_0_1",
+      "design_col_0_2",
+      "design_col_0_3",
+      "design_col_0_4"
+    ],
+    "design_col_1": [
+      "design_col_1_1",
+      "design_col_1_2",
+      "design_col_1_3",
+      "design_col_1_4"
+    ],
+    "design_col_2": [
+      "design_col_2_1",
+      "design_col_2_2",
+      "design_col_2_3",
+      "design_col_2_4",
+      "design_col_2_5"
+    ],
+    "design_col_3": [
+      "design_col_3_1",
+      "design_col_3_2",
+      "design_col_3_3"
+    ],
+    "design_col_4": [
+      "design_col_4_1",
+      "design_col_4_10",
+      "design_col_4_11",
+      "design_col_4_12",
+      "design_col_4_2",
+      "design_col_4_3",
+      "design_col_4_4",
+      "design_col_4_5",
+      "design_col_4_6",
+      "design_col_4_7",
+      "design_col_4_8",
+      "design_col_4_9"
+    ]
+  },
+  "promoter": {
+    "design_col_5": [
+      "design_col_5_1",
+      "design_col_5_2",
+      "design_col_5_3",
+      "design_col_5_4"
+    ],
+    "design_col_6": [
+      "design_col_6_1",
+      "design_col_6_2",
+      "design_col_6_3"
+    ],
+    "design_col_7": [
+      "design_col_7_1",
+      "design_col_7_2",
+      "design_col_7_3"
+    ]
+  },
+  "operator": {
+    "design_col_8": [
+      "design_col_8_1",
+      "design_col_8_2"
+    ]
+  },
+  "M": {
+    "design_col_0": [
+      "design_col_0_1",
+      "design_col_0_2",
+      "design_col_0_3",
+      "design_col_0_4"
+    ]
+  },
+  "NI": {
+    "design_col_0": [
+      "design_col_0_1",
+      "design_col_0_2",
+      "design_col_0_3",
+      "design_col_0_4"
+    ],
+    "design_col_1": [
+      "design_col_1_1",
+      "design_col_1_2"
+    ],
+    "design_col_4": [
+      "design_col_4_1",
+      "design_col_4_2"
+    ]
+  },
+  "S": {
+    "design_col_5": [
+      "design_col_5_1",
+      "design_col_5_2",
+      "design_col_5_3",
+      "design_col_5_4"
+    ]
+  },
+  "E": {
+    "design_col_0": [
+      "design_col_0_1",
+      "design_col_0_2"
+    ],
+    "design_col_8": [
+      "design_col_8_1",
+      "design_col_8_2"
+    ]
+  },
+  "T": {
+    "design_col_0:design_col_1": [
+      "design_col_0_1:design_col_1_1",
+      "design_col_0_2:design_col_1_2"
+    ],
+    "design_col_0:design_col_4": [
+      "design_col_0_1:design_col_4_1",
+      "design_col_0_2:design_col_4_2"
+    ],
+    "design_col_1:design_col_2": [
+      "design_col_1_1:design_col_2_1",
+      "design_col_1_2:design_col_2_2"
+    ],
+    "design_col_1:design_col_4": [
+      "design_col_1_1:design_col_4_1",
+      "design_col_1_2:design_col_4_2"
+    ],
+    "design_col_2:design_col_3": [
+      "design_col_2_1:design_col_3_1"
+    ],
+    "design_col_3:design_col_4": [
+      "design_col_3_1:design_col_4_1",
+      "design_col_3_2:design_col_4_2",
+      "design_col_3_3:design_col_4_3"
+    ],
+    "design_col_4:design_col_5": [
+      "design_col_4_1:design_col_5_1",
+      "design_col_4_2:design_col_5_2",
+      "design_col_4_3:design_col_5_3",
+      "design_col_4_4:design_col_5_4"
+    ]
+  },
+  "O": {
+    "design_col_0:design_col_0": [
+      "design_col_0_1:design_col_0_2",
+      "design_col_0_3:design_col_0_4"
+    ],
+    "design_col_5:design_col_5": [
+      "design_col_5_1:design_col_5_2",
+      "design_col_5_3:design_col_5_4"
+    ],
+    "design_col_6:design_col_6": [
+      "design_col_6_1:design_col_6_2"
+    ],
+    "design_col_8:design_col_8": [
+      "design_col_8_1:design_col_8_2"
+    ]
+  },
+  "B": {
+    "design_col_5:design_col_0": [
+      "design_col_5_1:design_col_0_1",
+      "design_col_5_2:design_col_0_2"
+    ],
+    "design_col_5:design_col_4": [
+      "design_col_5_1:design_col_4_3",
+      "design_col_5_2:design_col_4_4"
+    ],
+    "design_col_6:design_col_4": [
+      "design_col_6_1:design_col_4_1",
+      "design_col_6_1:design_col_4_5",
+      "design_col_6_2:design_col_4_6"
+    ],
+    "design_col_7:design_col_4": [
+      "design_col_7_1:design_col_4_2"
+    ]
+  },
+  "R": {
+    "design_col_0": [
+      "design_col_0_1"
+    ],
+    "design_col_4": [
+      "design_col_4_1"
+    ]
+  }
+}

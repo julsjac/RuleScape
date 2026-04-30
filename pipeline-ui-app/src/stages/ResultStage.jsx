@@ -379,7 +379,6 @@ export function ReportStage({
                     <span><strong>Feature source:</strong> {knoxEvaluation?.evaluationName || knoxRunParams?.evaluationName || "Knox evaluation"}</span>
                     <span><strong>Train split:</strong> {mlParams?.trainSplit ?? "—"}%</span>
                     <span><strong>Top N features:</strong> {mlParams?.topNFeatures ?? "—"}</span>
-                    <span><strong>Threshold:</strong> {mlParams?.threshold ?? "—"}</span>
                     <span><strong>Models:</strong> {mlRows.length > 0 ? mlRows.map((row) => row.modelTitle).join(", ") : "not run"}</span>
                   </div>
                 </td>

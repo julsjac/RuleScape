@@ -166,36 +166,6 @@ function parseCsvRow(line = "") {
   return cells;
 }
 
-function extractGoldbarExpression(text = "") {
-  const lines = text
-    .replace(/^\uFEFF/, "")
-    .split(/\r?\n/)
-    .filter((line) => line.trim() !== "");
-
-  if (lines.length < 2) {
-    return "";
-  }
-
-  const headers = parseCsvRow(lines[0]).map((header) => header.trim());
-  const goldbarIndex = headers.findIndex((header) => header.toLowerCase() === "goldbar");
-
-  if (goldbarIndex < 0) {
-    return "";
-  }
-
-  const values = lines
-    .slice(1)
-    .map((line) => parseCsvRow(line)[goldbarIndex] || "")
-    .map((value) => value.trim())
-    .filter(Boolean);
-
-  if (values.length === 0) {
-    return "";
-  }
-
-  return values.sort((left, right) => right.length - left.length)[0];
-}
-
 function parseCsv(text = "") {
   return text
     .split(/\r?\n/)
@@ -487,12 +457,26 @@ export function BridgeStage({
     const reader = new FileReader();
     reader.onload = () => {
       const importedText = String(reader.result ?? "");
-      const normalizedText =
-        fileSpec.id === "goldbar" && file.name.toLowerCase().endsWith(".csv")
-          ? extractGoldbarExpression(importedText) || importedText
-          : importedText;
 
-      onKnoxRuleInputChange(fileSpec.id, normalizedText);
+      if (fileSpec.id === "goldbar" && file.name.toLowerCase().endsWith(".csv")) {
+        const lines = importedText
+          .replace(/^\uFEFF/, "")
+          .split(/\r?\n/)
+          .filter((line) => line.trim() !== "");
+        const headers = lines.length
+          ? parseCsvRow(lines[0]).map((header) => header.trim().toLowerCase())
+          : [];
+        const goldbarIndex = headers.findIndex((header) => header === "goldbar");
+
+        if (goldbarIndex < 0 || lines.length < 2) {
+          window.alert("Goldbar CSV files must include a 'goldbar' column with at least one rule expression.");
+          event.target.value = "";
+          return;
+        }
+      }
+
+      onKnoxRuleInputChange(fileSpec.id, importedText);
+
       onKnoxRuleNameChange(fileSpec.id, file.name);
       setOpenRuleName(fileSpec.title);
     };

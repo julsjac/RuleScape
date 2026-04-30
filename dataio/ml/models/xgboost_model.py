@@ -29,8 +29,7 @@ def train(X_train, y_train, X_test, y_test, rules_N, feature_names):
         ascending=False
     )
 
-    top_features = importance_df.head(rules_N).reset_index()
-    top_features.columns = ["feature", "importance"]
+    top_features = importance_df.head(rules_N).reset_index(drop=True)
 
     # Returns model, its accuracy, and the top rules dataframe
     return {

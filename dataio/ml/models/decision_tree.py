@@ -4,7 +4,8 @@ from sklearn.metrics import accuracy_score, r2_score
 
 
 def train_classifier(X_train, y_train, X_test, y_test, rules_N, feature_names):
-    model = tree.DecisionTreeClassifier(max_depth=4)
+    max_depth = 4
+    model = tree.DecisionTreeClassifier(max_depth=max_depth)
     model.fit(X_train, y_train)
 
     preds = model.predict(X_test)
@@ -19,17 +20,18 @@ def train_classifier(X_train, y_train, X_test, y_test, rules_N, feature_names):
 
     return {
         "accuracy": float(accuracy_score(y_test, preds)),
-        "top_n_rules": top_features.to_dict(orient="records"),
+        "top_n_rules": top_features,
         "model_summary": {
             "type": "BinaryDecisionTree",
             "max_depth": max_depth,
-            "n_estimators": model.n_estimators,
+            "feature_count": len(feature_names),
         }
     }
 
 
 def train_regressor(X_train, y_train, X_test, y_test, rules_N, feature_names):
-    model = tree.DecisionTreeRegressor(max_depth=5)
+    max_depth = 5
+    model = tree.DecisionTreeRegressor(max_depth=max_depth)
     model.fit(X_train, y_train)
 
     preds = model.predict(X_test)
@@ -44,7 +46,7 @@ def train_regressor(X_train, y_train, X_test, y_test, rules_N, feature_names):
 
     return {
         "r2": float(r2_score(y_test, preds)),
-        "top_n_rules": top_features.to_dict(orient="records"),
+        "top_n_rules": top_features,
         "model_summary": {
             "type": "RegressionDecisionTree",
             "max_depth": max_depth,

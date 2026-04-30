@@ -26,6 +26,14 @@ has_command() {
   command -v "$1" >/dev/null 2>&1
 }
 
+has_homebrew_formula() {
+  brew list --versions "$1" >/dev/null 2>&1
+}
+
+has_apt_package() {
+  dpkg-query -W -f='${Status}' "$1" 2>/dev/null | grep -q "install ok installed"
+}
+
 node_major_version() {
   node -p "process.versions.node.split('.')[0]"
 }
@@ -157,6 +165,10 @@ ensure_homebrew_packages() {
     packages+=("graphviz")
   fi
 
+  if ! has_homebrew_formula "libomp"; then
+    packages+=("libomp")
+  fi
+
   if ! has_command java || [ "$(java_major_version 2>/dev/null || echo 0)" -lt "$MIN_JAVA_MAJOR" ]; then
     packages+=("openjdk@17")
   fi
@@ -193,6 +205,10 @@ ensure_apt_packages() {
 
   if ! has_command dot; then
     packages+=("graphviz")
+  fi
+
+  if ! has_apt_package "libomp-dev"; then
+    packages+=("libomp-dev")
   fi
 
   if ! has_command java || [ "$(java_major_version 2>/dev/null || echo 0)" -lt "$MIN_JAVA_MAJOR" ]; then

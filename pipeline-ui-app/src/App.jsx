@@ -158,34 +158,34 @@ const initialKnoxRunParams = Object.fromEntries(
 const serviceStatusMeta = {
   cello: {
     checking: {
-      label: "Checking Cello service",
+      label: "Checking",
       tone: "checking",
       note: "Checking whether the Cello pipeline server is reachable.",
     },
     online: {
-      label: "Cello online",
+      label: "Online",
       tone: "online",
       note: "",
     },
     offline: {
-      label: "Cello server offline",
+      label: "Offline",
       tone: "offline",
       note: "Start the Cello pipeline server locally, then Run Cello becomes available.",
     },
   },
   knox: {
     checking: {
-      label: "Checking Knox service",
+      label: "Checking",
       tone: "checking",
       note: "Checking whether the Knox server is reachable.",
     },
     online: {
-      label: "Knox online",
+      label: "Online",
       tone: "online",
       note: "",
     },
     offline: {
-      label: "Knox server offline",
+      label: "Offline",
       tone: "offline",
       note: "Start the Knox Spring server on port 8080, then Run Knox becomes available.",
     },
@@ -319,7 +319,6 @@ export default function App() {
   const [mlParams, setMlParams] = useState({
     trainSplit: 70,
     topNFeatures: 10,
-    threshold: 0.5,
   });
 
   const currentStep = steps[activeIndex];
@@ -567,7 +566,6 @@ export default function App() {
       topNFeatures: Number(
         nextPayload?.mlParams?.topNFeatures ?? nextPayload?.topNFeatures ?? mlParams.topNFeatures
       ),
-      threshold: Number(nextPayload?.mlParams?.threshold ?? nextPayload?.threshold ?? mlParams.threshold),
       models: Array.isArray(nextPayload?.models) ? nextPayload.models : [],
     };
 
@@ -594,7 +592,6 @@ export default function App() {
             ruleGroupId: knoxRunParams.ruleSpaceId || "",
             train_split: resolvedParams.trainSplit,
       top_n_features: resolvedParams.topNFeatures,
-      threshold: resolvedParams.threshold,
       models: resolvedParams.models,
     };
 
@@ -1119,22 +1116,6 @@ export default function App() {
                     }
                   />
                   <span className="ml-param-value">{mlParams.topNFeatures}</span>
-                </div>
-
-                <div className="ml-param-block">
-                  <div className="ml-param-header">
-                    <span className="ml-param-label">Threshold</span>
-                  </div>
-                  <input
-                    type="number"
-                    step="0.01"
-                    className="config-control"
-                    value={mlParams.threshold}
-                    onChange={(event) =>
-                      handleMlParamChange("threshold", Number(event.target.value))
-                    }
-                  />
-                  <span className="ml-param-value">{mlParams.threshold}</span>
                 </div>
 
                 <div className="run-control-stack">
